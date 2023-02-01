@@ -476,7 +476,7 @@ Create and return a new image for a spot specified by id.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: POST
-  * URL: /api/spots/:spotId/gallery
+  * URL: /api/:spotId/images
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -842,7 +842,7 @@ Create and return a new image for a review specified by id.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: POST
-  * URL: /api/:userId/:reviewId/gallery
+  * URL: /api/:userId/:reviewId/images
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -969,7 +969,7 @@ Delete an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /api/:userId/:reviewId
+  * URL: /api/reviews/:reviewId
   * Body: none
 
 * Successful Response
