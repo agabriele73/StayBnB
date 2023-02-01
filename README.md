@@ -2,6 +2,7 @@
 ## Database Schema Design
 
 `<insert database schema design here>`
+![Alt text](Screenshot%202023-01-31%20215708.png)
 
 ## API Documentation
 
