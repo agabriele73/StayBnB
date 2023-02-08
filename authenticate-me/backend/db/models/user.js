@@ -1,7 +1,7 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model, Validator} = require('sequelize');
+const bcrypt = require('bcryptjs')
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -9,6 +9,20 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+      toSafeObject() {
+        const {id, username, email} = this
+        return {id, username, email}
+      }
+      
+      validatePassword(password){
+        return bcrypt.compareSync(password, this.hashedPassword.toString())
+      }
+
+      static getCurrentUserById(id) {
+        return User.scope("currentUser").findByPk(id)
+      }
+
+
     static associate(models) {
       // define association here
     }
@@ -44,6 +58,19 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
+    defaultScope: {
+      attributes: {
+        exclude: ["hashedPassword", "email", "createdAt", "updatedAt"]
+      }
+    },
+    scopes: {
+      currentUser: {
+        attributes: { exclude: ["hashedPassword"]}
+      },
+      loginUser: {
+        attributes: {}
+      }
+    }
   });
   return User;
 };
