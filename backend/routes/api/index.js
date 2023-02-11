@@ -1,9 +1,9 @@
 // backend/routes/api/index.js
 // backend/routes/api/index.js
 const router = require('express').Router();
-const sessionRouter = require('./session.js');
-const usersRouter = require('./users.js.js');
-const { restoreUser, setTokenCookie } = require("../../utils/auth.js");
+const sessionRouter = require('./session');
+const usersRouter = require('./user');
+const { restoreUser, setTokenCookie } = require("../../utils/auth");
 
 // Connect restoreUser middleware to the API router
   // If current user session is valid, set req.user to the user in the database
