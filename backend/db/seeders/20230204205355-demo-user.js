@@ -22,7 +22,7 @@ module.exports = {
     await queryInterface.bulkInsert(options,[{
         firstName: 'Alfonso',
         lastName: 'Gabriel',
-        userName: 'sadcheeto',
+        username: 'sadcheeto',
         email: 'sadcheetto@gmail.com',
         hashedPassword: bcrypt.hashSync('ilikecheetos')
     }] )
