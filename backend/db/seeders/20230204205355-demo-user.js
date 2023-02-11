@@ -19,7 +19,7 @@ module.exports = {
      * }], {});
     */
     options.tableName = 'Users'
-    await queryInterface.bulkInsert('Users',[{
+    await queryInterface.bulkInsert(options,[{
         firstName: 'Alfonso',
         lastName: 'Gabriel',
         userName: 'sadcheeto',
