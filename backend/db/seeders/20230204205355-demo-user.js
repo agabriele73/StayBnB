@@ -6,6 +6,53 @@ if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
 
+const people = 
+[
+  {
+    firstName: 'Alfonso',
+    lastName: 'Gabriel',
+    username: 'sadcheeto',
+    email: 'sadcheetto@gmail.com',
+    hashedPassword: bcrypt.hashSync('ilikecheetos')
+}, 
+{
+  firstName: "Xander",
+  lastName: "Jorgensen",
+  email: "xander.jorgensen@example.com",
+  username: "xanderjorgensen",
+  password: bcrypt.hashSync("sR6D9d?zL@J8aTc")
+},
+{
+  firstName: "Lila",
+  lastName: "Chang",
+  email: "lila.chang@example.com",
+  username: "lilachang",
+  password: bcrypt.hashSync("5xKu@7z!hDmL8Nt")
+},
+{
+  firstName: "Mateo",
+  lastName: "Kumar",
+  email: "mateo.kumar@example.com",
+  username: "mateokumar",
+  password: bcrypt.hashSync("pL#3bF9qXrM2sCz")
+},
+{
+  firstName: "Ayaan",
+  lastName: "Nguyen",
+  email: "ayaan.nguyen@example.com",
+  username: "ayaannguyen",
+  password: bcrypt.hashSync("yJ6@zL9cXmG8sBn")
+},
+{
+  firstName: "Natalia",
+  lastName: "Garcia",
+  email: "natalia.garcia@example.com",
+  username: "nataliagarcia",
+  password: bcrypt.hashSync("tB9mC7yJ5!zQ8kD")
+}
+]
+
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -19,13 +66,7 @@ module.exports = {
      * }], {});
     */
     options.tableName = 'Users'
-    await queryInterface.bulkInsert(options,[{
-        firstName: 'Alfonso',
-        lastName: 'Gabriel',
-        username: 'sadcheeto',
-        email: 'sadcheetto@gmail.com',
-        hashedPassword: bcrypt.hashSync('ilikecheetos')
-    }] )
+    await queryInterface.bulkInsert(options, people)
   },
 
   async down (queryInterface, Sequelize) {
@@ -36,8 +77,6 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
     options.tableName = 'Users'
-    await queryInterface.bulkDelete('Users', {where: {
-      userName: 'sadcheeto'
-    }})
+    await queryInterface.bulkDelete(options, people)
   }
 };
