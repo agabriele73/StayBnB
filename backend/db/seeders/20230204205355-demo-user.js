@@ -20,35 +20,35 @@ const people =
   lastName: "Jorgensen",
   email: "xander.jorgensen@example.com",
   username: "xanderjorgensen",
-  password: bcrypt.hashSync("sR6D9d?zL@J8aTc")
+  hashedPassword: bcrypt.hashSync("sR6D9d?zL@J8aTc")
 },
 {
   firstName: "Lila",
   lastName: "Chang",
   email: "lila.chang@example.com",
   username: "lilachang",
-  password: bcrypt.hashSync("5xKu@7z!hDmL8Nt")
+  hashedPassword: bcrypt.hashSync("5xKu@7z!hDmL8Nt")
 },
 {
   firstName: "Mateo",
   lastName: "Kumar",
   email: "mateo.kumar@example.com",
   username: "mateokumar",
-  password: bcrypt.hashSync("pL#3bF9qXrM2sCz")
+  hashedPassword: bcrypt.hashSync("pL#3bF9qXrM2sCz")
 },
 {
   firstName: "Ayaan",
   lastName: "Nguyen",
   email: "ayaan.nguyen@example.com",
   username: "ayaannguyen",
-  password: bcrypt.hashSync("yJ6@zL9cXmG8sBn")
+  hashedPassword: bcrypt.hashSync("yJ6@zL9cXmG8sBn")
 },
 {
   firstName: "Natalia",
   lastName: "Garcia",
   email: "natalia.garcia@example.com",
   username: "nataliagarcia",
-  password: bcrypt.hashSync("tB9mC7yJ5!zQ8kD")
+  hashedPassword: bcrypt.hashSync("tB9mC7yJ5!zQ8kD")
 }
 ]
 

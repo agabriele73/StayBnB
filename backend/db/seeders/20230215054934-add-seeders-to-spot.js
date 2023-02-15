@@ -32,8 +32,8 @@ const locations = [
   },
   {
     address: "1 Old Park Lane",
-    city: "London",
-    state: "",
+    city: "Camden",
+    state: "London",
     country: "United Kingdom",
     lat: 51.504847,
     lng: -0.150628,

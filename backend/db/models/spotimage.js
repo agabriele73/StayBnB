@@ -1,4 +1,7 @@
 'use strict';
+
+
+
 const {
   Model
 } = require('sequelize');
@@ -21,7 +24,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     url:{ 
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        isUrl: true
+      }
     },
     previewImg: { 
       type: DataTypes.BOOLEAN,
