@@ -1,0 +1,245 @@
+Spots
+
+npx sequelize model:generate --name Spot --attributes ownerId:integer,address:string,city:string,state:string,country:string,lat:decimal,lng:decimal,name:string,description:string,price:decimal 
+
+
+Bookings
+
+npx sequelize model:generate --name Booking --attributes spotId:integer,userId:integer,startDate:date,endDate:date 
+
+
+Reviews
+
+npx sequelize model:generate --name Review --attributes userId:integer,spotId:integer,review:string,stars:integer
+
+
+spotImages
+
+npx sequelize model:generate --name spotImage --attributes spotId:integer,url:string,previewImg:boolean
+
+
+reviewImages
+
+npx sequelize model:generate --name reviewImage --attributes reviewId:integer,url:string
+
+
+
+Users Seeders
+
+npx sequelize seed:generate --name demo-user
+
+const users = [
+  {
+    firstName: "Xander",
+    lastName: "Jorgensen",
+    email: "xander.jorgensen@example.com",
+    username: "xanderjorgensen",
+    password: "sR6D9d?zL@J8aTc"
+  },
+  {
+    firstName: "Lila",
+    lastName: "Chang",
+    email: "lila.chang@example.com",
+    username: "lilachang",
+    password: "5xKu@7z!hDmL8Nt"
+  },
+  {
+    firstName: "Mateo",
+    lastName: "Kumar",
+    email: "mateo.kumar@example.com",
+    username: "mateokumar",
+    password: "pL#3bF9qXrM2sCz"
+  },
+  {
+    firstName: "Ayaan",
+    lastName: "Nguyen",
+    email: "ayaan.nguyen@example.com",
+    username: "ayaannguyen",
+    password: "yJ6@zL9cXmG8sBn"
+  },
+  {
+    firstName: "Natalia",
+    lastName: "Garcia",
+    email: "natalia.garcia@example.com",
+    username: "nataliagarcia",
+    password: "tB9mC7yJ5!zQ8kD"
+  }
+]
+
+Spots Seeders
+
+npx sequelize seed:generate --name add-seeders-to-Spots
+
+const locations = [
+  {
+    address: "123 Disney Lane",
+    city: "San Francisco",
+    state: "California",
+    country: "United States of America",
+    lat: 37.7645358,
+    lng: -122.4730327,
+    name: "App Academy",
+    description: "Place where web developers are created",
+    price: 123
+  },
+  {
+    address: "456 Main Street",
+    city: "New York",
+    state: "New York",
+    country: "United States of America",
+    lat: 40.7127753,
+    lng: -74.0059728,
+    name: "Empire State Building",
+    description: "Iconic skyscraper in Manhattan",
+    price: 200
+  },
+  {
+    address: "1 Old Park Lane",
+    city: "London",
+    state: "",
+    country: "United Kingdom",
+    lat: 51.504847,
+    lng: -0.150628,
+    name: "Dorchester Hotel",
+    description: "Luxury hotel in Mayfair",
+    price: 500
+  },
+  {
+    address: "20 Rue du Cherche-Midi",
+    city: "Paris",
+    state: "",
+    country: "France",
+    lat: 48.8485402,
+    lng: 2.3200663,
+    name: "Le Bon Marché",
+    description: "Luxury department store",
+    price: 400
+  },
+  {
+    address: "333 Universal Hollywood Drive",
+    city: "Los Angeles",
+    state: "California",
+    country: "United States of America",
+    lat: 34.1374595,
+    lng: -118.3565306,
+    name: "Universal Studios Hollywood",
+    description: "Movie-themed amusement park",
+    price: 150
+  }
+];
+
+
+spotimage seeders/ reviewImage 
+
+npx sequelize seed:generate --name add-seeders-to-reviewimages
+npx sequelize seed:generate --name add-seeders-to-spotimages
+
+[
+  {
+    "id": 1,
+    "url": "https://pixabay.com/get/gd618cfa1e947d46b7bcd30ec49224b6030ddd424e4a70aa296bde10bd56f7252bb0a3a675b2582e687ab5450a86e6d9f64a11d854e88b4618018eaa80e13c390_640.jpg",
+    "preview": true
+  },
+  {
+    "id": 3,
+    "url": "https://pixabay.com/get/gb3d0180fee4479b648bb93638e747924062f8b6d9b359f13abd41212f14110b2e1b1e27ccf16ca8cef3aadfefb363c8cd241ec4fffa27696677bfd2d5e24d69c_640.jpg",
+    "preview": true
+  },
+  {
+    "id": 3,
+    "url": "https://pixabay.com/get/g12b1eff9fc19368476501060fce6635ee046454264df3789b5678ab5de4e3360f6696eaef07df1bbdf92193b78082162_640.jpg",
+    "preview": true
+  },
+  {
+    "id": 4,
+    "url": "https://pixabay.com/get/g91b7eea60d38802c77990980909bf9c74161c1a6175d1c05394c4619ba1e11920cfa18eae972cd2383ebb10f66509c35_640.jpg",
+    "preview": true
+  },
+  {
+    "id": 5,
+    "url": "https://pixabay.com/get/g1a66765bf43dbf2193853796b3f5d817ce3c75bc315265eae7dba1d1447b2b4c9a9f7b52f91591357f355a480eade1fc2749bb818b370b159165ed9b5a721792_640.jpg",
+    "preview": true
+  }
+]
+
+
+review seeders
+
+npx sequelize seed:generate --name add-seeders-to-reviews
+
+const reviews = [
+  {
+    "review": "I had an amazing time at this Airbnb! The hosts were incredibly friendly and helpful, and the space was clean, cozy, and had everything I needed. Would definitely recommend this spot!",
+    "stars": 5,
+  },
+  {
+    "review": "This was a great stay! The location was perfect for exploring the city, and the apartment itself was stylish and comfortable. The only downside was that the wifi was a bit spotty, but overall I had a fantastic experience and would stay here again.",
+    "stars": 4,
+  },
+  {
+    "review": "Unfortunately, my stay at this Airbnb was a bit disappointing. The place was not as clean as I had hoped, and some of the amenities were not working properly. However, the host was very responsive and tried their best to make things right, so I appreciate their effort. I would recommend this spot with some caveats.",
+    "stars": 2,
+  },
+  {
+    "review": "I enjoyed my stay at this Airbnb! The location was quiet and peaceful, and the apartment had everything I needed. The only downside was that the bed was a bit uncomfortable, but I still had a good experience overall.",
+    "stars": 3,
+  },
+  {
+    "review": "I absolutely loved this Airbnb! The hosts were so welcoming and made me feel right at home. The space was beautifully decorated and had all the amenities I needed, plus some lovely personal touches. I would highly recommend this spot to anyone looking for a cozy and memorable stay.",
+    "stars": 5,
+  }
+];
+
+
+booking seeders
+
+npx sequelize seed:generate --name add-seeders-to-bookings
+
+const bookingData = [
+  {
+    spotId: 1,
+    userId: 1,
+    startDate: new Date('2023-03-01'),
+    endDate: new Date('2023-03-05'),
+  },
+  {
+    spotId: 2,
+    userId: 2,
+    startDate: new Date('2023-04-01'),
+    endDate: new Date('2023-04-07'),
+  },
+  {
+    spotId: 3,
+    userId: 3,
+    startDate: new Date('2023-06-01'),
+    endDate: new Date('2023-06-05'),
+  },
+  {
+    spotId: 4,
+    userId: 4,
+    startDate: new Date('2023-07-01'),
+    endDate: new Date('2023-07-07'),
+  },
+  {
+    spotId: 5,
+    userId: 5,
+    startDate: new Date('2023-08-01'),
+    endDate: new Date('2023-08-07'),
+  },
+];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
