@@ -1,11 +1,12 @@
 'use strict';
 
-const { SpotImage } = require('./spotimage')
-const { Review } = require('./review')
+const {SpotImage} = require('./spotimage')
+const {Sequelize} = require('sequelize')
 
 const {
   Model
 } = require('sequelize');
+const { sequelize } = require('.');
 module.exports = (sequelize, DataTypes) => {
   class Spot extends Model {
     /**
@@ -16,13 +17,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Spot.belongsTo(models.User, {foreignKey: 'ownerId'})
-      Spot.hasMany(models.Review, {foreignKey: 'spotId'})
-      Spot.hasMany(models.SpotImage, {foreignKey: 'spotId'})
+      Spot.hasMany(models.Review, {as: 'avgRating', foreignKey: 'spotId' })
+      Spot.hasMany(models.SpotImage, {as: 'previewImage', foreignKey: 'spotId'})
       Spot.hasMany(models.Booking, {foreignKey: 'spotId'})
+      
     }
   }
   Spot.init({
-    ownerId: DataTypes.INTEGER,
+    ownerId: {
+      type: DataTypes.INTEGER
+    },
     address: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -66,7 +70,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         len: {
-          args: 50,
+          args: [1,50],
           msg: 'Name must be less than 50 characters'
         }
       }
@@ -88,13 +92,13 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Spot',
     scopes: {
-      previewImage: {
+      spotWithPreview: {
         include: [
           {
-            model: SpotImage,
-            where: { previewImg: true },
-            attributes: ['url'],
-            required: true,  
+            association: 'previewImage', where: {previewImg: true}, attributes: [`url`]
+          },
+          {
+            association: 'avgRating', attributes: ['stars']
           }
         ]
       }
