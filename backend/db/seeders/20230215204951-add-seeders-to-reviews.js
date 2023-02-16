@@ -15,7 +15,7 @@ const reviews = [
     stars: 5,
   },
   {
-    userId: 5,
+    userId: 2,
     spotId: 2,
     review: "This was a great stay! The location was perfect for exploring the city.",
     stars: 4,
