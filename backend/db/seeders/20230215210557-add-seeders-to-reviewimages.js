@@ -42,7 +42,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   options.tableName = 'reviewImages'
+   options.tableName = 'ReviewImages'
    await queryInterface.bulkInsert(options, reviewimages)
   },
 
@@ -53,7 +53,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    options.tableName = 'reviewImages'
+    options.tableName = 'ReviewImages'
     await queryInterface.bulkDelete(options, reviewimages)
   }
 };
