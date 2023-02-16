@@ -1,7 +1,7 @@
 
 const express = require('express');
 
-const { Sequelize } = require('sequelize')
+
 
 const { Spot, Review, SpotImage } = require('../../db/models');
 const { setTokenCookie } = require('../../utils/auth');
