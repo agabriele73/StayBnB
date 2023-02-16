@@ -13,43 +13,37 @@ const people =
     lastName: 'Gabriel',
     username: 'sadcheeto',
     email: 'sadcheetto@gmail.com',
-    hashedPassword: bcrypt.hashSync('ilikecheetos')
+    hashedPassword: bcrypt.hashSync('aJnpREtvGKiuLwOcQMbylzmXFqDShgNaeBfjxHrUsT')
 }, 
 {
   firstName: "Xander",
   lastName: "Jorgensen",
-  email: "xander.jorgensen@example.com",
-  username: "xanderjorgensen",
-  hashedPassword: bcrypt.hashSync("sR6D9d?zL@J8aTc")
+  email: "xanderjorgensen@gmail.com",
+  username: "xanderjo5",
+  hashedPassword: bcrypt.hashSync("rTUcKtsbQfPjevqmFVkiZWLOXpMlDdEyaxSYHNhGzw")
 },
 {
   firstName: "Lila",
   lastName: "Chang",
-  email: "lila.chang@example.com",
-  username: "lilachang",
-  hashedPassword: bcrypt.hashSync("5xKu@7z!hDmL8Nt")
+  email: "lilachang@gmail.com",
+  username: "lilach2",
+  hashedPassword: bcrypt.hashSync("oRDsEKBnkbLajcpxuyYJmzXqvfTQlNPtZgwGWIeMAH")
 },
 {
   firstName: "Mateo",
   lastName: "Kumar",
-  email: "mateo.kumar@example.com",
-  username: "mateokumar",
-  hashedPassword: bcrypt.hashSync("pL#3bF9qXrM2sCz")
+  email: "mateokumar@gmail.com",
+  username: "matkuma",
+  hashedPassword: bcrypt.hashSync("ZGMrhJwNvIuWfQDgXcCsEiBtOyYPpSTanxkqUeFbL")
 },
 {
   firstName: "Ayaan",
   lastName: "Nguyen",
-  email: "ayaan.nguyen@example.com",
-  username: "ayaannguyen",
-  hashedPassword: bcrypt.hashSync("yJ6@zL9cXmG8sBn")
-},
-{
-  firstName: "Natalia",
-  lastName: "Garcia",
-  email: "natalia.garcia@example.com",
-  username: "nataliagarcia",
-  hashedPassword: bcrypt.hashSync("tB9mC7yJ5!zQ8kD")
+  email: "ayaannguyen@gmail.com",
+  username: "ayaaaaa",
+  hashedPassword: bcrypt.hashSync("tZPxpivWfjrwEaeRmyMnckLSsJYUubgHlXKqBoDNhC")
 }
+
 ]
 
 

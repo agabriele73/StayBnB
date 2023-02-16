@@ -27,9 +27,9 @@ const previewImages =
     previewImg: true
   },
   {
-    "id": 4,
-    "url": "https://pixabay.com/get/g91b7eea60d38802c77990980909bf9c74161c1a6175d1c05394c4619ba1e11920cfa18eae972cd2383ebb10f66509c35_640.jpg",
-    "preview": true
+    spotId: 4,
+    url: "https://pixabay.com/get/g91b7eea60d38802c77990980909bf9c74161c1a6175d1c05394c4619ba1e11920cfa18eae972cd2383ebb10f66509c35_640.jpg",
+    previewImg: true
   },
   {
     spotId: 5,
