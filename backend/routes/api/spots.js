@@ -1,7 +1,9 @@
 
 const express = require('express');
 
-const { Spot } = require('../../db/models');
+const { Sequelize } = require('sequelize')
+
+const { Spot, Review, SpotImage } = require('../../db/models');
 
 const router = express.Router();
 
@@ -10,9 +12,9 @@ const router = express.Router();
 
 
 router.get('/', async (req, res, next) => {
-    const Spots = await Spot.findAll()
-    
-    return res.json({ Spots: Spots})
+
+    const spotsWithPreview = await Spot.scope('previewImage').findAll({})
+    return res.json({Spots: spotsWithPreview})
 })
 
 
