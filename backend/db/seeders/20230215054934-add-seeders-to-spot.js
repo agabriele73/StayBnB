@@ -9,6 +9,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const locations = [
   {
+    ownerId: 2,
     address: "123 Disney Lane",
     city: "San Francisco",
     state: "California",
@@ -20,6 +21,7 @@ const locations = [
     price: 123
   },
   {
+    ownerId: 1,
     address: "456 Main Street",
     city: "New York",
     state: "New York",
@@ -42,6 +44,7 @@ const locations = [
     price: 500
   },
   {
+    ownerId: 2,
     address: "20 Rue du Cherche-Midi",
     city: "Paris",
     state: "",
