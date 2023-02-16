@@ -1,4 +1,8 @@
 'use strict';
+
+const { SpotImage } = require('./spotimage')
+const { Review } = require('./review')
+
 const {
   Model
 } = require('sequelize');
@@ -83,6 +87,18 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Spot',
+    scopes: {
+      previewImage: {
+        include: [
+          {
+            model: SpotImage,
+            where: { previewImg: true },
+            attributes: ['url'],
+            required: true,  
+          }
+        ]
+      }
+    }
   });
   return Spot;
 };
