@@ -13,10 +13,24 @@ const router = express.Router();
 
 
 router.get('/', async (req, res, next) => {
-    const id = 3
-    const spotsWithPreview = await Spot.scope('spotsWithPreview').findAll()
+    
+        const spotsWithPreview = await Spot.scope('spotsWithPreview').findAll()
+    
+        const spotsPreview = spotsWithPreview.map(spot => {
+            
+        const urls = spot.previewImage.map(image => image.url)
+        const stars = spot.avgRating.reduce((sum, rating) => sum + rating.stars, 0) / spot.avgRating.length
 
-    return res.json({Spots: spotsWithPreview})
+        if (stars === null) {
+            stars = 0
+        }
+        return{
+            ...spot.toJSON(),
+            previewImage: urls[0],
+            avgRating: stars
+        }
+    })
+    return res.json({Spots: spotsPreview})
 })
 
 
