@@ -13,8 +13,9 @@ const router = express.Router();
 
 
 router.get('/', async (req, res, next) => {
+    const id = 3
+    const spotsWithPreview = await Spot.scope('spotsWithPreview').findAll()
 
-    const spotsWithPreview = await Spot.scope(['spotWithPreview']).findAll({order: ['id']})
     return res.json({Spots: spotsWithPreview})
 })
 

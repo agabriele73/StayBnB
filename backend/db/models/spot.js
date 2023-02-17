@@ -1,6 +1,6 @@
 'use strict';
 
-
+const { Sequelize, DataTypes } = require('sequelize');
 
 const {
   Model
@@ -91,13 +91,15 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Spot',
     scopes: {
-      spotWithPreview: {
+      spotsWithPreview: {
         include: [
           {
             association: 'previewImage', where: {previewImg: true}, attributes: [`url`]
           },
           {
-            association: 'avgRating', attributes: ['stars']
+            association: 'avgRating', attributes: [
+              'stars'
+            ]
           }
         ]
       }
