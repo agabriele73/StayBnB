@@ -30,7 +30,23 @@ router.get('/', async (req, res, next) => {
 // create a spot
 router.post('/', async (req, res, next) => {
     const { ownerId, address, city, state, country, lat, lng, name, description, price } = req.body
-
+    if(!address || !city || !state || !country || !description || !price) {
+        res.status(404).json({
+            "message": "Validation Error",
+            "statusCode": 400,
+            "errors": {
+            "address": "Street address is required",
+            "city": "City is required",
+            "state": "State is required",
+            "country": "Country is required",
+            "lat": "Latitude is not valid",
+            "lng": "Longitude is not valid",
+            "name": "Name must be less than 50 characters",
+            "description": "Description is required",
+            "price": "Price per day is required"
+            }
+        })
+    }
     const createSpot = await Spot.create({
         ownerId: ownerId,
         address: address,
@@ -92,9 +108,9 @@ router.get('/:spotId', async (req, res, next) => {
             ]
         })
         if (!spot) {
-            const error = new Error(`Spot with ID ${spotId} not found`);
-            error.status = 404;
-            throw error;
+            
+            res.status(404).json({message: "Spot couldn't be found", statusCode: 404})
+    
         }
         const stars = spot.avgRating.reduce((sum, rating) => sum + rating.stars, 0) / spot.avgRating.length
         const totalReviews = spot.avgRating.length
