@@ -38,9 +38,9 @@ router.post(
       const user = await User.login({ credential, password });
   
       if (!user) {
-        const err = new Error({message:'Invalid credentials', statusCode: 401});
-        err.status= 401
-        return next(err);
+        res.status(401).json({message: 'Invalid credentials', statusCode: 401})
+        
+        
       }
   
       await setTokenCookie(res, user);
