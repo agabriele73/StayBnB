@@ -21,9 +21,7 @@ router.get('/', async (req, res, next) => {
         const urls = spot.previewImage.map(image => image.url)
         const stars = spot.avgRating.reduce((sum, rating) => sum + rating.stars, 0) / spot.avgRating.length
 
-        if (stars === null) {
-            stars = 0
-        }
+        
         return{
             ...spot.toJSON(),
             previewImage: urls[0],
