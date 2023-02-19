@@ -9,17 +9,37 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 router.get('/current', async (req, res, next) => {
     const userId = req.user.id
-
+    
     const currReviews = await Review.findAll({where: {userId: userId}, include: 
         [
-            
+            {model: Spot, attributes: ['id','ownerId', 'address', 'city', 'state', 'country', 'lat','lng', 'name', 'description', 'price'], include: [
+                {
+                model: SpotImage, attributes: ['url'],
+                },
+            ]},
             { model: User, attributes: ['id', 'firstName', 'lastName']},
-            {model: Spot, attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']},
+
             {model: ReviewImage, attributes: ['id', 'url']}
         ]
 })
     
-    res.json(currReviews)
+const modifiedCurrReviews = currReviews.map((review) => {
+    let spot = review.Spot
+    const urlMod = spot.SpotImages.map(obj => {
+        let url = obj.url
+        return {
+            ...spot.toJSON(),
+            previewImage: url,
+            SpotImages: undefined
+        }
+    })
+    return {
+        ...review.toJSON(),
+        Spot: urlMod,
+    }
+});
+
+res.json({Reviews: modifiedCurrReviews});
 })
 
 

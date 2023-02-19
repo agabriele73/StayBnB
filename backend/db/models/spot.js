@@ -90,27 +90,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Spot',
-    scopes: {
-      spotsWithPreview() {
-        const {SpotImage, Review } = require('./index.js')
-        console.log(this,'sdfsdgdfsgseddfsbgdsfgbsdfgfg')
-        return {
-
-          include: [
-            {
-              model: SpotImage, where: {previewImg: true}, attributes: []
-            },
-            {
-              model: Review
-            }
-          ],
-          attributes: ['id','ownerId', 'address', 'city', 'state', 'country', 'lat','lng', 'name', 'description', 'price', [Sequelize.col('SpotImages.url'), 'previewImage'],
-          //[Sequelize.fn('AVG', Sequelize.col('Reviews.stars')), 'avgRating']
-        ]
-
-        }
-      }
-    }
   });
   return Spot;
 };
