@@ -1,5 +1,5 @@
 const express = require('express');
-const { Spot, Review, SpotImage, User } = require('../../db/models');
+const { Spot, Review, SpotImage, User, ReviewImage } = require('../../db/models');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { Sequelize } = require('sequelize');
 const router = express.Router();
@@ -125,8 +125,7 @@ router.get('/current', async (req, res, next) => {
             
         
 
-        const starsArr = associatedSpots.map(spot => {
-            console.log(spot) 
+        const starsArr = associatedSpots.map(spot => { 
             return spot.Reviews.map(review => review.stars)})
         //console.log(starsArr)
         
@@ -369,6 +368,24 @@ const validateLogin = [
             stars
         })
         res.json(newReview)
+    })
+
+    router.get('/:spotId/reviews', async (req, res, next) => {
+        const spotId = req.params.spotId
+
+
+        const reviews = await Review.findAll({ where: {spotId},include: [
+                {model: User, attributes: ['id', 'firstName', 'lastName']},
+                {model: ReviewImage, attributes: ['id', 'url']}
+            ]
+        })
+        if(reviews.length === undefined) {
+            return res.status(404).json({
+                message: 'Spot couldnt be found',
+                statusCode: 404
+            })
+        }
+        res.status(200).json(reviews)
     })
 
 
