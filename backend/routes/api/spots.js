@@ -336,8 +336,40 @@ const validateLogin = [
     handleValidationErrors
     ];
 
+    // create a revie for a spot based on spotId
+    router.post('/:spotId/reviews', async (req, res, next) => {
+        const userId = req.user.id
+        const spotId = parseInt(req.params.spotId, 10)
+        const { review, stars } = req.body
 
-    router.post('/:spotId/reviews', validateLogin, async (req, res, next) => {})
+        const spot = await Spot.findByPk(spotId)
+
+        if(!spot) {
+            res.status(404).json({
+                message: "Spot couldn't be found",
+                statusCode: 404
+            })
+        }
+
+        const existingReview = await Review.findOne({where: {spotId: spotId, userId: userId}})
+
+
+        if(existingReview) {
+            res.status(403).json({
+                message: "User already has a review for this spot",
+                statusCode: 403
+            })
+        }
+
+
+        const newReview = await Review.create({
+            userId,
+            spotId,
+            review,
+            stars
+        })
+        res.json(newReview)
+    })
 
 
 
