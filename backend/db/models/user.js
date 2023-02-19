@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
           }
         });
         if (user && user.validatePassword(password)) {
-          return await User.scope('currentUser').findByPk(user.id);
+          return await User.findByPk(user.id);
         }
       }
 
@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       // define association here
-      User.hasMany(models.Spot, {foreignKey: 'ownerId'})
+      User.hasMany(models.Spot, { foreignKey: 'ownerId'})
       User.hasMany(models.Review, {foreignKey: 'userId'})
       User.hasMany(models.Booking, {foreignKey: 'userId'})
     }
@@ -98,7 +98,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
     defaultScope: {
       attributes: {
-        exclude: ["hashedPassword", "email", "createdAt", "updatedAt"]
+        exclude: ["hashedPassword", "createdAt", "updatedAt"]
       }
     },
     scopes: {
