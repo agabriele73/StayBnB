@@ -37,6 +37,12 @@ const reviews = [
     spotId: 3,
     review: "I absolutely loved this Airbnb!",
     stars: 5,
+  },
+  {
+    userId: 1,
+    spotId: 2,
+    review: 'This spot was awesome! Would stay again if i am in the area!',
+    stars: 3
   }
 ];
 

@@ -15,9 +15,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Spot.belongsTo(models.User, {foreignKey: 'ownerId', as: 'Owner'})
-      Spot.hasMany(models.Review, {as: 'avgRating', foreignKey: 'spotId' })
-      Spot.hasMany(models.SpotImage, {as:'previewImage', foreignKey: 'spotId'})
+      Spot.belongsTo(models.User, {foreignKey: 'ownerId'})
+      Spot.hasMany(models.Review, { foreignKey: 'spotId' })
+      Spot.hasMany(models.SpotImage, { foreignKey: 'spotId'})
       Spot.hasMany(models.Booking, {foreignKey: 'spotId'})
       
     }
@@ -91,17 +91,24 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Spot',
     scopes: {
-      spotsWithPreview: {
-        include: [
-          {
-            association: 'previewImage', where: {previewImg: true}, attributes: [`url`]
-          },
-          {
-            association: 'avgRating', attributes: [
-              'stars'
-            ]
-          }
+      spotsWithPreview() {
+        const {SpotImage, Review } = require('./index.js')
+        console.log(this,'sdfsdgdfsgseddfsbgdsfgbsdfgfg')
+        return {
+
+          include: [
+            {
+              model: SpotImage, where: {previewImg: true}, attributes: []
+            },
+            {
+              model: Review
+            }
+          ],
+          attributes: ['id','ownerId', 'address', 'city', 'state', 'country', 'lat','lng', 'name', 'description', 'price', [Sequelize.col('SpotImages.url'), 'previewImage'],
+          //[Sequelize.fn('AVG', Sequelize.col('Reviews.stars')), 'avgRating']
         ]
+
+        }
       }
     }
   });
