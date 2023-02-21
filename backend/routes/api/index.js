@@ -7,6 +7,7 @@ const spotsRouter = require('./spots')
 const reviewsRouter = require('./reviews')
 const spotImagesRouter = require('./spot-images')
 const reviewImagesRouter = require('./review-images')
+const bookingRouter = require('./booking')
 const { restoreUser, setTokenCookie } = require("../../utils/auth");
 
 // Connect restoreUser middleware to the API router
@@ -27,6 +28,7 @@ router.use('/spot-images', spotImagesRouter);
 
 router.use('/review-images', reviewImagesRouter)
 
+router.use('/bookings', bookingRouter)
 // backend/routes/api/index.js
 // ...
 
