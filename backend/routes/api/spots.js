@@ -251,7 +251,7 @@ router.post('/:spotId/images', async (req, res, next) => {
         url: url,
         previewImg: previewImg
     })
-    res.json({
+    res.status(201).json({
         id: newImage.id,
         url: newImage.url,
         previewImg: newImage.previewImg
@@ -305,7 +305,7 @@ router.post('/:spotId/reviews', async (req, res, next) => {
             review,
             stars
         })
-        res.json(newReview)
+        res.status(201).json(newReview)
     })
 
 // get reviews of a spot
