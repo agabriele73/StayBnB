@@ -38,7 +38,7 @@ const bookingData = [
     userId: 5,
     startDate: new Date('2023-08-01'),
     endDate: new Date('2023-08-07'),
-  },
+  }
 ];
 
 
