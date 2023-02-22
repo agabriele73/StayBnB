@@ -8,87 +8,138 @@ const { handleValidationErrors } = require('../../utils/validation');
 // ...
 
 
-
-
-// get all spots
 router.get('/', async (req, res, next) => {
-    let page = Number(req.query.page) || 1;
-    let size = Number(req.query.size) || 20;
-    let minLat = Number(req.query.minLat);
-    let maxLat = Number(req.query.maxLat);
-    let minLng = Number(req.query.minLng);
-    let maxLng = Number(req.query.maxLng);
-    let minPrice = Number(req.query.minPrice) || 0;
-    let maxPrice = Number(req.query.maxPrice) || Number.MAX_SAFE_INTEGER;
-
-
-    const whereClause = {
-        lat: {
-            [Op.gte]: minLat || -90,
-            [Op.lte]: maxLat || 90
+    const { page = 1, size = 20, minLat = -90, maxLat = 90, minLng = -180, maxLng = 180, minPrice = 0, maxPrice = Number.MAX_SAFE_INTEGER } = req.query;
+  
+    const spots = await Spot.findAll({
+      where: {
+        lat: { [Op.between]: [minLat, maxLat] },
+        lng: { [Op.between]: [minLng, maxLng] },
+        price: { [Op.between]: [minPrice, maxPrice] }
+      },
+      include: [
+        {
+          model: SpotImage,
+          attributes: ['url']
         },
-        lng: {
-            [Op.gte]: minLng || -180,
-            [Op.lte]: maxLng || 180
-        },
-        price: {
-            [Op.gte]: minPrice || 0,
-            [Op.lte]: maxPrice || Number.MAX_SAFE_INTEGER
+        {
+          model: Review,
+          attributes: ['stars']
         }
-    }
-    const {count, rows} = await Spot.findAndCountAll({
-        where: whereClause,
-            include: [
-                {
-                model: SpotImage, 
-                attributes: ['url']
-                },
-                {
-                model: Review, 
-                attributes: ['stars']
-                }
-            ],
-            //     attributes: [
-            //         'id',
-            //         'ownerId', 
-            //         'address', 
-            //         'city', 
-            //         'state', 
-            //         'country', 
-            //         'lat',
-            //         'lng', 
-            //         'name', 
-            //         'description', 
-            //         'price', 
-            //         [Sequelize.col('SpotImage.url'), 'previewImage']
-            // ],
-            offset: (page - 1) * size,
-            limit: size
-        })
-            const starsArr = rows.map(spot => spot.Reviews.map(review => review.stars))
-            const avgStars = starsArr.map(stars => {
-            let avg
-            const sum = stars.reduce((total, star) => total + star, 0)
-            avg = sum / stars.length
-            return avg
-        })
+      ],
+      offset: (page - 1) * size,
+      limit: size
+    });
+  
+    const count = await Spot.count({
+      where: {
+        lat: { [Op.between]: [minLat, maxLat] },
+        lng: { [Op.between]: [minLng, maxLng] },
+        price: { [Op.between]: [minPrice, maxPrice] }
+      }
+    });
+  
+    const spotsWithKeys = spots.map(spot => {
+      const url = spot.SpotImages[0].url;
+      const stars = spot.Reviews.map(review => review.stars);
+      const avgStars = stars.reduce((total, star) => total + star, 0) / stars.length;
+  
+      return {
+        ...spot.toJSON(),
+        previewImage: url,
+        avgRating: avgStars,
+        Reviews: undefined,
+        SpotImages: undefined
+      };
+    });
+  
+    res.status(200).json({
+      Spots: spotsWithKeys,
+      page: Number(page),
+      size: Math.min(size, count)
+    });
+  });
+  
+
+// // get all spots
+// router.get('/', async (req, res, next) => {
+//     let page = Number(req.query.page) || 1;
+//     let size = Number(req.query.size) || 20;
+//     let minLat = Number(req.query.minLat);
+//     let maxLat = Number(req.query.maxLat);
+//     let minLng = Number(req.query.minLng);
+//     let maxLng = Number(req.query.maxLng);
+//     let minPrice = Number(req.query.minPrice) || 0;
+//     let maxPrice = Number(req.query.maxPrice) || Number.MAX_SAFE_INTEGER;
+
+
+//     const whereClause = {
+//         lat: {
+//             [Op.gte]: minLat || -90,
+//             [Op.lte]: maxLat || 90
+//         },
+//         lng: {
+//             [Op.gte]: minLng || -180,
+//             [Op.lte]: maxLng || 180
+//         },
+//         price: {
+//             [Op.gte]: minPrice || 0,
+//             [Op.lte]: maxPrice || Number.MAX_SAFE_INTEGER
+//         }
+//     }
+//     const {count, rows} = await Spot.findAndCountAll({
+//         where: whereClause,
+//             include: [
+//                 {
+//                 model: SpotImage, 
+//                 attributes: ['url']
+//                 },
+//                 {
+//                 model: Review, 
+//                 attributes: ['stars']
+//                 }
+//             ],
+//             //     attributes: [
+//             //         'id',
+//             //         'ownerId', 
+//             //         'address', 
+//             //         'city', 
+//             //         'state', 
+//             //         'country', 
+//             //         'lat',
+//             //         'lng', 
+//             //         'name', 
+//             //         'description', 
+//             //         'price', 
+//             //         [Sequelize.col('SpotImage.url'), 'previewImage']
+//             // ],
+//             offset: (page - 1) * size,
+//             limit: size
+//         })
+//             const starsArr = rows.map(spot => spot.Reviews.map(review => review.stars))
+//             const avgStars = starsArr.map(stars => {
+//             let avg
+//             const sum = stars.reduce((total, star) => total + star, 0)
+//             avg = sum / stars.length
+//             return avg
+//         })
         
-        const spotsWithKeys = rows.map((spot, index) => {
-            let url = spot.SpotImages[0].url
-            let spotToReturn = {
-                ...spot.toJSON(),
-                previewImage: url,
-                avgRating: avgStars[index],
-                Reviews: undefined,
-                SpotImages: undefined
-        }
-        return spotToReturn
-    })
-    res.status(200).json({Spots: spotsWithKeys,
-    page,
-    size: Math.min(size, count)    
-    })
-})
+//         const spotsWithKeys = rows.map((spot, index) => {
+//             let url = spot.SpotImages[0].url
+//             let spotToReturn = {
+//                 ...spot.toJSON(),
+//                 previewImage: url,
+//                 avgRating: avgStars[index],
+//                 Reviews: undefined,
+//                 SpotImages: undefined
+//         }
+//         return spotToReturn
+//     })
+//     res.status(200).json({Spots: spotsWithKeys,
+//     page,
+//     size: Math.min(size, count)    
+//     })
+// })
 
 // create a spot
 router.post('/', async (req, res, next) => {
