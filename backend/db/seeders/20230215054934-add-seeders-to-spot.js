@@ -33,6 +33,7 @@ const locations = [
     price: 200
   },
   {
+    ownerId: 3,
     address: "1 Old Park Lane",
     city: "Camden",
     state: "London",
@@ -56,6 +57,7 @@ const locations = [
     price: 400
   },
   {
+    ownerId: 4,
     address: "333 Universal Hollywood Drive",
     city: "Los Angeles",
     state: "California",
