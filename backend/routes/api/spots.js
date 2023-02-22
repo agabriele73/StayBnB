@@ -56,7 +56,6 @@ router.get('/', async (req, res, next) => {
             offset: (page - 1) * size,
             limit: size
         })
-        console.log(rows)
             const starsArr = rows.map(spot => spot.Reviews.map(review => review.stars))
             const avgStars = starsArr.map(stars => {
             let avg
