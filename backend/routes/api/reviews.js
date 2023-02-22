@@ -47,20 +47,20 @@ res.json({Reviews: modifiedCurrReviews});
 
 // post an image to a review
 router.post('/:reviewId/images', async (req, res) => {
-    const userId = req.user.id
+    const userId = Number(req.user.id)
     const reviewId = parseInt(req.params.reviewId, 10)
     const { url } = req.body
     const review = await Review.findByPk(reviewId)
-    if(userId !== review.userId) {
-        res.status(400).json({
-            message: 'user not authorized',
-            statusCode: 400
-        })
-    }
     if(!review) {
         res.status(404).json({
             message: "Review couldn't be found",
             statusCode: 404
+        })
+    }
+    if(userId !== review.userId) {
+        res.status(400).json({
+            message: 'user not authorized',
+            statusCode: 400
         })
     }
     const newReviewImage = await ReviewImage.create({
