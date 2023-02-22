@@ -23,9 +23,18 @@ router.get('/', async (req, res, next) => {
 
 
     const whereClause = {
-        lat : {[Op.between]: [minLat || -90, maxLat || 90] },
-        lng: {[Op.between]: [minLng || -180, maxLng || 180] },
-        price: {[Op.between]: [minPrice, maxPrice]}
+        lat: {
+            [Op.gte]: minLat || -90,
+            [Op.lte]: maxLat || 90
+        },
+        lng: {
+            [Op.gte]: minLng || -180,
+            [Op.lte]: maxLng || 180
+        },
+        price: {
+            [Op.gte]: minPrice || 0,
+            [Op.lte]: maxPrice || Number.MAX_SAFE_INTEGER
+        }
     }
     const {count, rows} = await Spot.findAndCountAll({
         where: whereClause,
