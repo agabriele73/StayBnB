@@ -12,32 +12,52 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 // get all spots
 router.get('/', async (req, res, next) => {
-    const spotsWithPreviewandAvgRating = await Spot.findAll({
+    const page = Number(req.query.page) || 1;
+    const size = Number(req.query.size) || 20;
+    const minLat = Number(req.query.minLat);
+    const maxLat = Number(req.query.maxLat);
+    const minLng = Number(req.query.minLng);
+    const maxLng = Number(req.query.maxLng);
+    const minPrice = Number(req.query.minPrice) || 0;
+    const maxPrice = Number(req.query.maxPrice) || Number.MAX_SAFE_INTEGER;
+
+
+    const whereClause = {
+        lat : {[Op.between]: [minLat || -90, maxLat || 90] },
+        lng: {[Op.between]: [minLng || -180, maxLng || 180] },
+        price: {[Op.between]: [minPrice, maxPrice]}
+    }
+    const {count, rows} = await Spot.findAndCountAll({
+        where: whereClause,
             include: [
                 {
-                model: SpotImage, attributes: []
+                model: SpotImage, 
+                attributes: ['url']
                 },
                 {
-                model: Review, attributes: ['stars']
+                model: Review, 
+                attributes: ['stars']
                 }
             ],
-                attributes: [
-                    'id',
-                    'ownerId', 
-                    'address', 
-                    'city', 
-                    'state', 
-                    'country', 
-                    'lat',
-                    'lng', 
-                    'name', 
-                    'description', 
-                    'price', 
-                    [Sequelize.col('SpotImages.url'), 'previewImage']
-            ]
+            //     attributes: [
+            //         'id',
+            //         'ownerId', 
+            //         'address', 
+            //         'city', 
+            //         'state', 
+            //         'country', 
+            //         'lat',
+            //         'lng', 
+            //         'name', 
+            //         'description', 
+            //         'price', 
+            //         [Sequelize.col('SpotImage.url'), 'previewImage']
+            // ],
+            offset: (page - 1) * size,
+            limit: size
         })
-            const starsArr = spotsWithPreviewandAvgRating.map(spot => {
-            return spot.Reviews.map(review => review.stars)})
+        console.log(rows)
+            const starsArr = rows.map(spot => spot.Reviews.map(review => review.stars))
             const avgStars = starsArr.map(stars => {
             let avg
             const sum = stars.reduce((total, star) => total + star, 0)
@@ -45,16 +65,21 @@ router.get('/', async (req, res, next) => {
             return avg
         })
         
-        const spotsWithKeys = spotsWithPreviewandAvgRating.map((spot, index) => {
-            spot.Reviews = spot.avgRating 
-            delete spot.Reviews
-            return {
+        const spotsWithKeys = rows.map((spot, index) => {
+            let url = spot.SpotImages[0].url
+            let spotToReturn = {
                 ...spot.toJSON(),
+                previewImage: url,
                 avgRating: avgStars[index],
-                Reviews: undefined
-            } 
-        })
-    res.status(200).json({Spots: spotsWithKeys})
+                Reviews: undefined,
+                SpotImages: undefined
+        }
+        return spotToReturn
+    })
+    res.status(200).json({Spots: spotsWithKeys,
+    page,
+    size: Math.min(size, count)    
+    })
 })
 
 // create a spot
