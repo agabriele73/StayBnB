@@ -12,14 +12,14 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 // get all spots
 router.get('/', async (req, res, next) => {
-    const page = Number(req.query.page) || 1;
-    const size = Number(req.query.size) || 20;
-    const minLat = Number(req.query.minLat);
-    const maxLat = Number(req.query.maxLat);
-    const minLng = Number(req.query.minLng);
-    const maxLng = Number(req.query.maxLng);
-    const minPrice = Number(req.query.minPrice) || 0;
-    const maxPrice = Number(req.query.maxPrice) || Number.MAX_SAFE_INTEGER;
+    let page = Number(req.query.page) || 1;
+    let size = Number(req.query.size) || 20;
+    let minLat = Number(req.query.minLat);
+    let maxLat = Number(req.query.maxLat);
+    let minLng = Number(req.query.minLng);
+    let maxLng = Number(req.query.maxLng);
+    let minPrice = Number(req.query.minPrice) || 0;
+    let maxPrice = Number(req.query.maxPrice) || Number.MAX_SAFE_INTEGER;
 
 
     const whereClause = {
