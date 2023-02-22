@@ -109,7 +109,14 @@ router.put('/:reviewId', async (req, res) => {
 
 // delete a review
 router.delete('/:reviewId', async (req, res, next) => {
+    const userId = req.user.id
     const review = await Review.findByPk(req.params.reviewId)
+    if(review.userId !== userId) {
+        res.status(403).json({
+            message: "User not authorized",
+            statusCode: 403
+        })
+    }
     if (!review) {
         res.status(404).json({
             message: "Review couldn't be found",
