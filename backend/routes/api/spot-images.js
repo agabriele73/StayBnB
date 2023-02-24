@@ -9,7 +9,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 // delete spot-image by imageId
 
-router.delete('/:imageId', async (req, res) => {
+router.delete('/:imageId', requireAuth, async (req, res) => {
     const userId = req.user.id
     
     const image = await SpotImage.findByPk(req.params.imageId, {include: {
