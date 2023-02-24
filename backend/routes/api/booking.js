@@ -8,7 +8,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 // get curr user bookings
-router.get('/current', async (req, res) => {
+router.get('/current', requireAuth, async (req, res) => {
     const userId = req.user.id
     const currBookings = await Booking.findAll({where: {
         userId: userId
@@ -42,7 +42,7 @@ res.json({ bookings: updatedBookings });
 
 
 // edit a spot
-router.put('/:bookingId', async (req, res) => {
+router.put('/:bookingId', requireAuth, async (req, res) => {
     const { startDate, endDate } = req.body;
     const bookingId = req.params.bookingId
     const userId = req.user.id
@@ -114,7 +114,7 @@ router.put('/:bookingId', async (req, res) => {
 
 //delete a booking
 
-router.delete('/:bookingId', async (req, res) => {
+router.delete('/:bookingId', requireAuth, async (req, res) => {
     const bookingId = req.params.bookingId
     const userId = req.user.id
 

@@ -8,7 +8,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 // delete a review by Id
 
-router.delete('/:imageId', async (req, res) => {
+router.delete('/:imageId', requireAuth, async (req, res) => {
     const userId = req.user.id
     const reviewImage = await ReviewImage.findByPk(req.params.imageId, {
         include: {
