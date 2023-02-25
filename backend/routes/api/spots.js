@@ -69,7 +69,7 @@ router.get('/', requireAuth, async (req, res, next) => {
             let avg
             const sum = stars.reduce((total, star) => total + star, 0)
             avg = sum / stars.length
-            return avg
+            return avg.toFixed(1)
         })
         
         const spotsWithKeys = rows.map((spot, index) => {
@@ -85,7 +85,7 @@ router.get('/', requireAuth, async (req, res, next) => {
     })
     res.status(200).json({Spots: spotsWithKeys,
     page,
-    size: Math.min(size, count)    
+    size: size    
     })
 })
 
