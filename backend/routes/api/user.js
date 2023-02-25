@@ -44,13 +44,18 @@ router.post(
       const { firstName, lastName, email, password, username } = req.body;
       try {
         
-        const user = await User.signup({firstName, lastName, email, username, password });
+        const  user = await User.signup({firstName, lastName, email, username, password });
+        
         
     await setTokenCookie(res, user);
+    return res.json({
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      username: user.username
+    })
   
-      return res.json({
-        user: user
-      });
     } catch (err) {
       // Handle errors thrown by User.signup() method
       if (err.name === 'SequelizeUniqueConstraintError') {
@@ -74,20 +79,14 @@ router.post(
         return res.status(400).json({
           message: 'Validation error',
           statusCode: 400,
-          errors: errors
-        });
-      } else {
-        return res.status(400).json({
-          "message": "Validation error",
-          "statusCode": 400,
-          "errors": {
+          errors: {
             "email": "Invalid email",
             "username": "Username is required",
             "firstName": "First Name is required",
             "lastName": "Last Name is required"
           }
         });
-      }
+      } 
     }
   }
 );
