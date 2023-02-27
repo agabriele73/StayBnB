@@ -37,59 +37,23 @@ const validateSignup = [
 // ...
 
 // Sign up
-router.post(
-    '/',
-    validateSignup,
-    async (req, res) => {
-      const { firstName, lastName, email, password, username } = req.body;
-      try {
-        
-        const  user = await User.signup({firstName, lastName, email, username, password });
-        
-        
-    await setTokenCookie(res, user);
-    return res.json({
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      username: user.username
-    })
-  
-    } catch (err) {
-      // Handle errors thrown by User.signup() method
-      if (err.name === 'SequelizeUniqueConstraintError') {
-        const errors = {};
-        if (err.fields.includes('email')) {
-          errors.email = 'User with that email already exists';
-        }
-        if (err.fields.includes('username')) {
-          errors.username = 'User with that username already exists';
-        }
-        return res.status(403).json({
-          message: 'User already exists',
-          statusCode: 403,
-          errors: errors
-        });
-      } else if (err.name === 'ValidationError') {
-        const errors = {};
-        err.errors.forEach(error => {
-          errors[error.param] = error.msg;
-        });
-        return res.status(400).json({
-          message: 'Validation error',
-          statusCode: 400,
-          errors: {
-            "email": "Invalid email",
-            "username": "Username is required",
-            "firstName": "First Name is required",
-            "lastName": "Last Name is required"
-          }
-        });
-      } 
-    }
-  }
-);
+router.post('/', validateSignup, async (req, res) => {
+  const { email, password, username, firstName, lastName } = req.body;
+
+  const user = await User.signup({ email, username, password, firstName, lastName });
+
+  const newToken = await setTokenCookie(res, user);
+
+  return res.json({ 
+    id: user.id,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    username: user.username,
+    token: newToken
+});
+
+})
 
 
 
