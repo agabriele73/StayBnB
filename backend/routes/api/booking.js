@@ -106,7 +106,6 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         endDate: new Date(endDate)
         
     })
-    console.log(updatedBooking)
     res.json(updatedBooking)
 
 })
