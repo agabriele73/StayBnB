@@ -21,5 +21,6 @@
   "bugs": {
     "url": "https://github.com/agabriele73/AirBnB/issues"
   },
-  "homepage": "https://github.com/agabriele73/AirBnB#readme"
+  "homepage": "https://github.com/agabriele73/AirBnB#readme",
+  "proxy": "http://localhost:8000"
 }
