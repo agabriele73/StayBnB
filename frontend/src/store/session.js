@@ -36,17 +36,16 @@ export const loginThunk = (user) => async dispatch => {
 }
 
 const sessionReducer = (state = initialState, action) => {
-    let newState = {...state};
+    let newState 
     switch(action.type) {
         case SET_SESSION:
-            return {
-                ...state,
-                user: action.user
-            }
+            newState = Object.assign({}, state)
+            newState.user = action.user
+            return newState
         case REMOVE_SESSION:
-            return {
-                user: null
-            }
+            newState = Object.assign({}, state)
+            newState.user = null
+            return newState
         default:
             return state;
     }
