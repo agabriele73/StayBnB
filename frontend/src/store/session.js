@@ -17,7 +17,8 @@ const initialState = {
     user: null
 }
 
-export const loginThunk = (credential, password) => async dispatch => {
+export const loginThunk = (user) => async dispatch => {
+    const {credential, password} = user
     const response = await csrfFetch('/api/session', {
         method: 'POST',
         headers: {
