@@ -32,8 +32,9 @@ if (process.env.NODE_ENV === 'production') {
 // Add a XSRF-TOKEN cookie in development
 if (process.env.NODE_ENV !== 'production') {
   router.get('/api/csrf/restore', (req, res) => {
-    res.cookie('XSRF-TOKEN', req.csrfToken());
-    res.status(201).json({});
+    const csrftoken = req.csrfToken()
+    res.cookie('XSRF-TOKEN', csrftoken);
+    res.status(201).json({"XSRF-TOKEN": csrftoken});
   });
 }
 
