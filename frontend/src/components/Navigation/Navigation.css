@@ -24,7 +24,6 @@
     padding: 10px;
     border-radius: 5px;
     background-color: #f2f2f2;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
 
 .label {
@@ -35,22 +34,52 @@
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 
 }
 .login-modal{ 
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: auto;
-    
 }
+
+
+.login-input {
+    width: 100%;
+    max-width: 300px;
+    display: flex-box;
+    overflow: auto;
+    align-items: center;
+    border: 3px solid black;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.login-button {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    text-indent: 120px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    box-shadow: 5px 5px 10px #333;
+    background-color: #f2f2f2;
+}
+
+.demo-user {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+
 
 .signup-button {
     display: flex;
     margin-top: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
 
 .signup-h1 {
@@ -59,5 +88,4 @@
     justify-content: center;
     margin-top: 20px;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
