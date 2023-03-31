@@ -32,82 +32,105 @@ function SignupFormModal() {
             .then(closeModal)
             .catch(async (res) => {
                 const data = await res.json();
+                console.log('this is the data', data);
                 if (data && data.errors) setErrors(data.errors);
             })
         }
         return setErrors (['Confirm Password field must be the same as the Password field'])
     }
+    console.log('these are the errr', errors);
+
+    const handleDisabled = () => {
+        if (
+            !email ||
+            !username ||
+            !firstName ||
+            !lastName ||
+            !password ||
+            !confirmPassword ||
+            username.length < 4 ||
+            password.length < 6 ||
+            password !== confirmPassword
+        ) {
+            return false
+        } else {
+            return true
+        }
+    }
 
     return (
-        <>
+        <div className='signup-container'>
         <h1 className="signup-h1">Sign Up</h1>
         <form onSubmit={handleSubmit} className= 'signup-modal'>
             <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                {errors.map((error, idx) => {
+                    console.log(error);
+                return (
+                    <li key={idx}>{error}</li>)})}
+
+            
             </ul>
-            <label className='label'>
-                Email:
+           
                 <input
                     className= "input"
                     type='text'
+                    placeholder='Email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     />
-            </label>
-            <label className='label'>
-                Username:
+    
+          
                 <input 
                     className="input"        
+                    placeholder='Username'
                     type='text'
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
                     />
-            </label>
-            <label className='label'>
-                First Name:
+           
+          
                 <input 
                     className= "input"
                     type='text'
+                    placeholder='First Name'
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                     required
                     />
-            </label>
-            <label className='label'>
-                Last Name:
+            
+           
                 <input
                     className= "input"
                     type='text'
+                    placeholder='Last Name'
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                     required 
                 />
-            </label>
-            <label className='label'>
-                Password:
+            
+        
                 <input
                     className= "input"
                     type='password'
+                    placeholder='Password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-            </label>
-            <label className='label'>
-                Confirm Password:
+        
                 <input  
                     className= "input"
                     type='password'
                     value={confirmPassword}
+                    placeholder='Confirm Password'
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                 />
-            </label>
-            <button type='submit' className='signup-button'>Sign Up</button>
+            <button type='submit' className='signup-button' disabled={!handleDisabled()}>Sign Up</button>
         </form>
-        </>
+        </div>
     )
 }
 

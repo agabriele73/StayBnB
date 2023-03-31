@@ -3,3 +3,7 @@
     color: red;
     background-color: brown;
 }
+
+Root {
+    overflow : auto;
+}

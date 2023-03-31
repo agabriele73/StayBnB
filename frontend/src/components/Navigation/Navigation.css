@@ -2,6 +2,44 @@
     display: none;
 }
 
+.nav-ul {
+    display: flex;
+    flex-direction: row;
+    gap: 599px;
+    margin: auto;
+    list-style-type: none;
+}
+
+.home-image {
+    display: flex;
+    height: 70px;
+    width: 60px;
+}
+
+.session-buttons {
+    display: flex;
+    flex-direction: row;
+    margin-left: 5px;
+}
+
+
+.signup-button {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    text-indent: 105px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    box-shadow: 5px 5px 10px #333;
+    border: black solid 3px;
+    background-color: red;
+    color: white;
+    font-family: cursive;
+    font-size: 14pt;
+    cursor: pointer;
+}
 
 .signup-modal{ 
     display: flex;
@@ -9,21 +47,34 @@
     align-items: center;
     justify-content: center;
     margin: auto;
+    
+
 }
 
+.signup-errors {
+    color: red;
+    display: flex;
+    align-items: flex-start;
+    margin-right: 40px;
+    font-family: cursive;
+    font-size: 18pt;
+    font-weight: bold;
+}
+    
+
 .input {
-    width: 80%;
+    width: 100%;
+    max-width: 300px;
     display: flex-box;
     overflow: auto;
     align-items: center;
+    border: 3px solid black;
     justify-content: center;
-    margin-top: 10px;
     margin-bottom: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #f2f2f2;
+    margin-left: 100px;
+    margin-right: 100px;
+    font-family: cursive; 
+    font-size: 14pt;
 }
 
 .label {
@@ -34,7 +85,8 @@
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
-
+    font-family: cursive;
+    font-size: 14pt;
 }
 
 .login-modal{ 
@@ -56,6 +108,7 @@
     margin-left: 100px;
     margin-right: 100px;
     font-family: cursive; 
+    font-size: 14pt;
 }
 
 .login-button {
@@ -73,6 +126,7 @@
     color: white;
     font-family: cursive;
     font-size: 14pt;
+    cursor: pointer;
 }
 
 .login-errors {
@@ -95,6 +149,7 @@
     display: flex;
     margin-bottom: 20px;
     font-family: cursive;
+    font-size: 14pt;
 }
 
 
@@ -103,6 +158,8 @@
     display: flex;
     margin-top: 20px;
     margin-bottom: 20px;
+    font-size: 14pt;
+    font-family: cursive;
 }
 
 .signup-h1 {
@@ -112,4 +169,6 @@
     margin-top: 20px;
     margin-bottom: 20px;
     font-size: 24pt;
+    font-weight: bold;
+    font-family: cursive;
 }

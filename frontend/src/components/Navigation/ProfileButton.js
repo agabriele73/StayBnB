@@ -41,7 +41,7 @@ const ProfileButton = ({user}) => {
             </button>
             <ul className={ulClassName} ref={ulRef}>
                 <li>{user.username}</li>
-                <li>{user.firstName} {user.lastName}</li>
+                <li>Hello, {user.firstName} {user.lastName}</li>
                 <li>{user.email}</li>
                 <li>
                     <button onClick={logout}>Logout</button>

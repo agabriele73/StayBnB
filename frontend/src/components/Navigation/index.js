@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import OpenModalButton from '../OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import homeIcon from '../../images/airbnbhome.png';
 import './Navigation.css';
 
 function Navigation({isLoaded}) {
@@ -14,7 +15,7 @@ function Navigation({isLoaded}) {
     let sessionLinks;
     if (sessionUser) {
         sessionLinks = (
-            <li>
+            <li className='profile-button'>
                 <ProfileButton user={sessionUser} />
             </li>
         )
@@ -24,20 +25,20 @@ function Navigation({isLoaded}) {
                 <OpenModalButton 
                     buttonText="Log In"
                     modalComponent={<LoginFormModal />}
-                    className="login-modal"
+                    className='login-home-button'
                 />
                 <OpenModalButton
                     buttonText="Sign Up"
                     modalComponent={<SignupFormModal />}
-                    className="signup-modal"
+                    className='signup-home-button'
                 />
             </li>
         )
     }
     return (
-        <ul>
-            <li>
-                <NavLink exact to="/">Home</NavLink>
+        <ul className='nav-ul'>
+            <li className='home-button'>
+                <NavLink exact to="/"><img className='home-image' src={homeIcon} alt="home"/></NavLink>
             </li>
             {isLoaded && sessionLinks}
         </ul>

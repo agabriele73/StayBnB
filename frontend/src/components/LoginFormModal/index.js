@@ -39,7 +39,6 @@ function LoginFormModal() {
             }
         })
     }
-    console.log(errors);
 
     
     return (
