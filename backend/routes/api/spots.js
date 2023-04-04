@@ -10,7 +10,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 
 // get all spots
-router.get('/', requireAuth, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     let page = Number(req.query.page) || 1;
     let size = Number(req.query.size) || 20;
     let minLat = Number(req.query.minLat);

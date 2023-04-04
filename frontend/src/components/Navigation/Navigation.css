@@ -2,6 +2,12 @@
     display: none;
 }
 
+.session-buttons {
+    display: flex;
+    background-color: #CCCCCC;
+    
+}
+
 .nav-ul {
     display: flex;
     justify-content: space-between;
@@ -20,7 +26,6 @@
     border-radius: 5px;
     font-size: 14pt;
     color: #fff;
-
 }
 
 .home-image {
@@ -47,11 +52,15 @@
     margin-bottom: 20px;
     box-shadow: 5px 5px 10px #333;
     border: black solid 3px;
-    background-color: red;
+    background-color: #CCCCCC;
     color: white;
     font-family: cursive;
     font-size: 14pt;
     cursor: pointer;
+}
+
+.signup-button:disbaled {
+    opacity: 0.5;
 }
 
 .signup-modal{ 

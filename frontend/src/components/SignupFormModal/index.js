@@ -38,7 +38,6 @@ function SignupFormModal() {
         }
         return setErrors (['Confirm Password field must be the same as the Password field'])
     }
-    console.log('these are the errr', errors);
 
     const handleDisabled = () => {
         if (
@@ -64,7 +63,6 @@ function SignupFormModal() {
         <form onSubmit={handleSubmit} className= 'signup-modal'>
             <ul >
                 {Object.values(errors).map((error, idx) => {
-                    console.log(error);
                 return (
                     <li className='signup-errors' key={idx}>{error}</li>)})}
 

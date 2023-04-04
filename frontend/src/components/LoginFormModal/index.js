@@ -21,7 +21,8 @@ function LoginFormModal() {
 
     const handelDemoUser = (e) => {
         e.preventDefault();
-        dispatch(sessionActions.demoLoginThunk()).then(closeModal);
+        dispatch(sessionActions.demoLoginThunk())
+        closeModal();
     }
 
     const handleSubmit = (e) => {
