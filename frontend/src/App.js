@@ -4,6 +4,7 @@ import {Switch} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
+import SpotsShow from './components/SpotsShow';
 
 
 
@@ -18,6 +19,7 @@ useEffect(() => {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <SpotsShow isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
         </Switch>

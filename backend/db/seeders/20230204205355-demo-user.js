@@ -9,6 +9,14 @@ if (process.env.NODE_ENV === 'production') {
 const people = 
 [
   {
+    firstName: 'Demo',
+    lastName: 'User',
+    username: 'demouser',
+    email: 'demo@user.io',
+    hashedPassword: bcrypt.hashSync('password')
+}, 
+
+  {
     firstName: 'Alfonso',
     lastName: 'Gabriel',
     username: 'sadcheeto',
