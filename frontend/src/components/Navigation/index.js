@@ -25,19 +25,19 @@ function Navigation({isLoaded}) {
                 <OpenModalButton 
                     buttonText="Log In"
                     modalComponent={<LoginFormModal />}
-                    className='login-home-button'
+                    className='nav-button'
                 />
                 <OpenModalButton
                     buttonText="Sign Up"
                     modalComponent={<SignupFormModal />}
-                    className='signup-home-button'
+                    className='nav-button'
                 />
             </li>
         )
     }
     return (
         <ul className='nav-ul'>
-            <li className='home-button'>
+            <li className='nav-button'>
                 <NavLink exact to="/"><img className='home-image' src={homeIcon} alt="home"/></NavLink>
             </li>
             {isLoaded && sessionLinks}

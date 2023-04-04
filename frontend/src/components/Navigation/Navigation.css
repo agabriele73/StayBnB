@@ -4,10 +4,23 @@
 
 .nav-ul {
     display: flex;
-    flex-direction: row;
-    gap: 599px;
-    margin: auto;
-    list-style-type: none;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0 20px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-button {
+    margin-left: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14pt;
+    color: #fff;
+
 }
 
 .home-image {
@@ -122,11 +135,15 @@
     margin-bottom: 20px;
     box-shadow: 5px 5px 10px #333;
     border: black solid 3px;
-    background-color: red;
+    background-color: #CCCCCC;
     color: white;
     font-family: cursive;
     font-size: 14pt;
     cursor: pointer;
+}
+
+.login-button:disbaled {
+    opacity: 0.5;
 }
 
 .login-errors {

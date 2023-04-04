@@ -40,8 +40,7 @@ const ProfileButton = ({user}) => {
                 <i className="fa-solid fa-user fa-sm"></i>
             </button>
             <ul className={ulClassName} ref={ulRef}>
-                <li>{user.username}</li>
-                <li>Hello, {user.firstName} {user.lastName}</li>
+                <li>Hello, {user.firstName}</li>
                 <li>{user.email}</li>
                 <li>
                     <button onClick={logout}>Logout</button>

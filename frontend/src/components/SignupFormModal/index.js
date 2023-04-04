@@ -62,11 +62,11 @@ function SignupFormModal() {
         <div className='signup-container'>
         <h1 className="signup-h1">Sign Up</h1>
         <form onSubmit={handleSubmit} className= 'signup-modal'>
-            <ul>
-                {errors.map((error, idx) => {
+            <ul >
+                {Object.values(errors).map((error, idx) => {
                     console.log(error);
                 return (
-                    <li key={idx}>{error}</li>)})}
+                    <li className='signup-errors' key={idx}>{error}</li>)})}
 
             
             </ul>
