@@ -9,6 +9,7 @@ import './SpotShow.css';
 function SpotsShow({isLoaded}) {
     const dispatch = useDispatch();
     const spots = useSelector(state => state.spots.spots);
+    console.log(spots);
 
 
 
@@ -22,6 +23,7 @@ function SpotsShow({isLoaded}) {
                 <div className="spot-card" key={spot.id} data-spot-name={spot.name}>
                         <img className='spots-image' src={spot.previewImage} alt={spot.name} style={{width: '200px', height: '200px'}} />
                         <p>{spot.city}, {spot.state}</p>
+                        <p>{spot.avgRating}</p>
                         <p>${spot.price}/night</p>
                 </div>
             ))}
