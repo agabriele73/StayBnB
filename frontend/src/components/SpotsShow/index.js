@@ -10,7 +10,6 @@ import './SpotShow.css';
 function SpotsShow({isLoaded}) {
     const dispatch = useDispatch();
     const spots = useSelector(state => state.spots.spots);
-    console.log(spots);
     
     useEffect(() => {
         dispatch(spotsActions.fetchSpots());
@@ -40,7 +39,7 @@ function SpotsShow({isLoaded}) {
             stars.push(<div key="half-star" className="fa-solid fa-star-half-alt" style={starStyle}></div>);
         }
 
-        console.log('these are stars',stars)
+    
 
         const remainingStars = maxRating - stars.length;
         for (let i = 0; i < remainingStars; i++) {

@@ -1,20 +1,28 @@
-import React from "react";
+import React, { useEffect} from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import * as spotsActions from "../../store/spots";
 
 function SpotDetails({ isLoaded }) {
     const { spotId } = useParams();
-    const spot = useSelector(state => state.spots.spots[Number(spotId)]);
+    const dispatch = useDispatch();
+    const spots = useSelector(state => state.spots.spots);
+    const spot = spots ? spots[spotId] : null;
 
-    console.log(spot);
-    return isLoaded && (
+    useEffect(() => {
+        dispatch(spotsActions.fetchSpots());
+    }, [dispatch]);
+
+    return isLoaded && spot ? (
         <div>
             <h1>Spot Details</h1>
             <p>{spot.name}</p>
             <p>{spot.city}, {spot.state}, {spot.country}</p>
+            <img src={spot.previewImage} alt={spot.name} style={{height: '300px', width: '300px'}}/>
             <p>{spot.description}</p>
+            <button>Reserve</button>
         </div>
-    );
+    ) : null;
 }
 
 

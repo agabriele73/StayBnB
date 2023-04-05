@@ -21,12 +21,11 @@ useEffect(() => {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/spots/:spotId">
-            <SpotDetails isLoaded={isLoaded} />
-          </Route>
-          <Route path="/">
+          <Route exact path="/">
           <SpotsShow isLoaded={isLoaded} />
-
+          </Route>
+          <Route exact path="/spots/:spotId">
+            <SpotDetails isLoaded={isLoaded} />
           </Route>
         </Switch>
       )}
