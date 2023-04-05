@@ -10,10 +10,14 @@ import './SpotShow.css';
 function SpotsShow({isLoaded}) {
     const dispatch = useDispatch();
     const spots = useSelector(state => state.spots.spots);
+    console.log(spots)
     
     useEffect(() => {
-        dispatch(spotsActions.fetchSpots());
-    }, [dispatch]);
+        if (!spots) {
+
+            dispatch(spotsActions.fetchSpots());
+        }
+    }, [dispatch, spots]);
 
 
     
