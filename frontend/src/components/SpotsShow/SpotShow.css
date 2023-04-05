@@ -19,6 +19,26 @@
     }
 }
 
+.spot-link {
+    text-decoration: none;
+    color: black;
+}
+.card-text {
+    display: inline-block
+}
+
+.spot-info {
+    text-decoration: none;
+}
+
+.stars-container {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+    text-decoration: none;
+}
+
+
 .spot-card {
     position: relative;
     border: 1px solid black;

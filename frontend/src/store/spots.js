@@ -20,8 +20,11 @@ const spotsReducer = (state = initialState, action) => {
     let newState
     switch (action.type) {
         case SET_SPOTS:
-            newState = Object.assign({}, state)
-            newState.spots = action.spots
+            let normalizedSpots = {}; 
+            action.spots.forEach(spot => {
+                normalizedSpots[spot.id] = spot
+            })
+            newState = {...state, spots: normalizedSpots};
             return newState
         default:
             return state;
