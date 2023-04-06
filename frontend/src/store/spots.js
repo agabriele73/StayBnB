@@ -3,10 +3,17 @@ import { csrfFetch } from "./csrf";
 const initialState = {};
 
 export const SET_SPOTS = 'spots/SET_SPOTS';
+export const SET_SPOT_DETAILS = 'spots/SET_SPOT_DETAILS';
+
 
 export const setSpots = (spots) => ({
     type: SET_SPOTS,
     spots
+})
+
+export const setSpotDetails = (spotDetails) => ({
+    type: SET_SPOT_DETAILS,
+    spotDetails
 })
 
 
@@ -16,16 +23,22 @@ export const fetchSpots = () => async dispatch => {
     dispatch(setSpots(data.Spots));
 }
 
+export const fetchSpotDetails = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`);
+    const data = await response.json();
+    dispatch(setSpotDetails(data));
+}
+
 const spotsReducer = (state = initialState, action) => {
-    let newState
     switch (action.type) {
         case SET_SPOTS:
             let normalizedSpots = {}; 
             action.spots.forEach(spot => {
                 normalizedSpots[spot.id] = spot
             })
-            newState = {...state, spots: normalizedSpots};
-            return newState
+            return {...state, spots: normalizedSpots};
+        case SET_SPOT_DETAILS:
+             return {...state, spotDetails: action.spotDetails};
         default:
             return state;
     }
