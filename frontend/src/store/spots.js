@@ -1,4 +1,4 @@
-import SpotDetails from "../components/SpotDetails";
+
 import { csrfFetch } from "./csrf";
 
 const initialState = {
@@ -32,13 +32,13 @@ export const fetchSpotDetails = (spotId) => async dispatch => {
     dispatch(setSpotDetails(data));
 }
 
-export const fetchSpotReviews = (spotId) => async dispatch => {
-    const response = await csrfFetch(`/api/spots/${spotId}`)
-    const data = await response.json();
-    const reviewsResponse = await csrfFetch(`/api/spots/${spotId}/reviews`);
-    const reviewsData = await reviewsResponse.json();
-    dispatch(setSpotDetails({...data, reviews: reviewsData}));
-}
+// export const fetchSpotReviews = (spotId) => async dispatch => {
+//     const response = await csrfFetch(`/api/spots/${spotId}`)
+//     const data = await response.json();
+//     const reviewsResponse = await csrfFetch(`/api/spots/${spotId}/reviews`);
+//     const reviewsData = await reviewsResponse.json();
+//     dispatch(setSpotDetails({...data, reviews: reviewsData}));
+// }
 
 const spotsReducer = (state = initialState, action) => {
     switch (action.type) {

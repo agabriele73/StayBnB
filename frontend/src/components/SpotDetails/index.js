@@ -6,7 +6,7 @@ import * as spotsActions from "../../store/spots";
 function SpotDetails({ isLoaded }) {
     const { spotId } = useParams();
     const dispatch = useDispatch();
-    const spots = useSelector(state => state.spots.spots);
+    // const spots = useSelector(state => state.spots.spots);
     const spot = useSelector(state => state.spots.spotDetails);
 
     useEffect(() => {
