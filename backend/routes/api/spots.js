@@ -341,7 +341,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
     })
 
 // get reviews of a spot
-router.get('/:spotId/reviews', requireAuth, async (req, res, next) => {
+router.get('/:spotId/reviews', async (req, res, next) => {
         const spotId = req.params.spotId
         const reviews = await Review.findAll({ where: {spotId},include: [
                 {model: User, attributes: ['id', 'firstName', 'lastName']},
@@ -350,7 +350,7 @@ router.get('/:spotId/reviews', requireAuth, async (req, res, next) => {
         })
         if(!reviews.length) {
             return res.status(404).json({
-                message: 'Spot couldnt be found',
+                message: 'reviews couldnt be found',
                 statusCode: 404
             })
         }
