@@ -6,6 +6,7 @@ import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
 import SpotsShow from './components/SpotsShow';
 import SpotDetails from './components/SpotDetails';
+import SpotForm from './components/SpotForm';
 
 
 function App() {
@@ -24,7 +25,10 @@ useEffect(() => {
           <Route exact path="/">
           <SpotsShow isLoaded={isLoaded} />
           </Route>
-          <Route exact path="/spots/:spotId">
+          <Route path={`/spots/new`}>
+            <SpotForm />
+          </Route>
+          <Route path="/spots/:spotId">
             <SpotDetails isLoaded={isLoaded} />
           </Route>
         </Switch>
