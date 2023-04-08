@@ -1,0 +1,37 @@
+.spot-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.spot-form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.spot-form input,
+.spot-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.spot-form textarea {
+    resize: vertical;
+}
+
+.spot-button {
+    background-color: #ccc;
+    color: white;
+    font-size: 14pt;
+}
+
+.create-spot {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+}
+

@@ -1,12 +1,11 @@
+
+
+
 .hidden {
     display: none;
 }
 
-.session-buttons {
-    display: flex;
-    background-color: #CCCCCC;
-    
-}
+
 
 .nav-ul {
     display: flex;
@@ -35,9 +34,32 @@
 }
 
 .session-buttons {
+    margin: 10px;
     display: flex;
-    flex-direction: row;
-    margin-left: 5px;
+
+    
+
+}
+
+button {
+    padding: 10px;
+    background-color: #CCCCCC;
+    color: white;
+    font-family: cursive;
+    font-weight: bold;
+    border-radius: 5px;
+    border: black solid 3px;
+    cursor: pointer;
+}
+
+.session-signup {
+    display: flex;
+    margin: 10px;
+}
+
+.session-login {
+    display: flex;
+    margin-left: auto;
 }
 
 

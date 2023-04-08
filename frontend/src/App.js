@@ -1,11 +1,12 @@
 //frontend/src/App.js
 import React, { useEffect, useState} from 'react';
-import {Switch} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
 import SpotsShow from './components/SpotsShow';
-
+import SpotDetails from './components/SpotDetails';
+import SpotForm from './components/SpotForm';
 
 
 function App() {
@@ -19,9 +20,17 @@ useEffect(() => {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      <SpotsShow isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+          <SpotsShow isLoaded={isLoaded} />
+          </Route>
+          <Route path={`/spots/new`}>
+            <SpotForm />
+          </Route>
+          <Route path="/spots/:spotId">
+            <SpotDetails isLoaded={isLoaded} />
+          </Route>
         </Switch>
       )}
     </>

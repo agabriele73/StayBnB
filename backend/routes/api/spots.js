@@ -22,14 +22,14 @@ router.get('/', async (req, res, next) => {
 
 
     const whereClause = {
-        lat: {
-            [Op.gte]: minLat || -90,
-            [Op.lte]: maxLat || 90
-        },
-        lng: {
-            [Op.gte]: minLng || -180,
-            [Op.lte]: maxLng || 180
-        },
+        // lat: {
+        //     [Op.gte]: minLat || -90,
+        //     [Op.lte]: maxLat || 90
+        // },
+        // lng: {
+        //     [Op.gte]: minLng || -180,
+        //     [Op.lte]: maxLng || 180
+        // },
         price: {
             [Op.gte]: minPrice || 0,
             [Op.lte]: maxPrice || Number.MAX_SAFE_INTEGER
@@ -37,6 +37,7 @@ router.get('/', async (req, res, next) => {
     }
     const {count, rows} = await Spot.findAndCountAll({
         where: whereClause,
+
             include: [
                 {
                 model: SpotImage, 
@@ -64,6 +65,7 @@ router.get('/', async (req, res, next) => {
             offset: (page - 1) * size,
             limit: size
         })
+
             const starsArr = rows.map(spot => spot.Reviews.map(review => review.stars))
             const avgStars = starsArr.map(stars => {
             let avg
@@ -71,18 +73,22 @@ router.get('/', async (req, res, next) => {
             avg = sum / stars.length
             return avg.toFixed(1)
         })
-        
+        console.log('rows--------', whereClause,rows )
         const spotsWithKeys = rows.map((spot, index) => {
-            let url = spot.SpotImages[0].url
+            let url = spot.SpotImages[0]
             let spotToReturn = {
                 ...spot.toJSON(),
-                previewImage: url,
+                previewImage: url.url,
                 avgRating: avgStars[index],
-                Reviews: undefined,
-                SpotImages: undefined
-        }
+                
+            }
+            delete spotToReturn.Reviews
+            delete spotToReturn.SpotImages
+
+
         return spotToReturn
     })
+    console.log('spotswithkeys--------------',spotsWithKeys)
     res.status(200).json({Spots: spotsWithKeys,
     page,
     size: size    
@@ -172,7 +178,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 })
 
 // get spots by :spotId
-router.get('/:spotId', requireAuth, async (req, res, next) => {
+router.get('/:spotId', async (req, res, next) => {
     let spotId = req.params.spotId
     const spot = await Spot.findByPk(spotId, {
             include: [
@@ -264,6 +270,7 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
 router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     const userId = req.user.id
     const { url, previewImg } = req.body
+    console.log('url & preview backend', req.body)
     const spot = await Spot.findByPk(req.params.spotId)
     if(!spot) {
         res.status(404).json({
@@ -341,7 +348,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
     })
 
 // get reviews of a spot
-router.get('/:spotId/reviews', requireAuth, async (req, res, next) => {
+router.get('/:spotId/reviews', async (req, res, next) => {
         const spotId = req.params.spotId
         const reviews = await Review.findAll({ where: {spotId},include: [
                 {model: User, attributes: ['id', 'firstName', 'lastName']},
@@ -350,7 +357,7 @@ router.get('/:spotId/reviews', requireAuth, async (req, res, next) => {
         })
         if(!reviews.length) {
             return res.status(404).json({
-                message: 'Spot couldnt be found',
+                message: 'reviews couldnt be found',
                 statusCode: 404
             })
         }
