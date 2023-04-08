@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import './SpotForm.css';
 import { useDispatch } from "react-redux";
 import * as spotsActions from "../../store/spots";
+import { useHistory } from "react-router-dom";
 
 
 
 
 function SpotForm() {
     const dispatch = useDispatch();
+    const history = useHistory();
     
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
@@ -33,12 +35,14 @@ function SpotForm() {
             address,
             description,
             price,
-            previewImage,
+            previewImage: previewImage,
             name
         }
+        let createdSpot;
 
-
-        await dispatch(spotsActions.createSpot(formData));
+        await dispatch(spotsActions.postSpot(formData)).then((spot) => {
+            history.push(`/spots/${spot.newSpot.id}`)
+        })
        
 
     }

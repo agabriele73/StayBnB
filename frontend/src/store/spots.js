@@ -49,7 +49,8 @@ export const postSpot = (spot) => async dispatch => {
     });
     if(response.ok) {
         const newSpot = await response.json();
-        dispatch(createSpot(newSpot));
+        console.log(newSpot)
+        dispatch(createSpot(newSpot.newSpot));
         return newSpot
     }
 }
@@ -63,17 +64,22 @@ export const postSpot = (spot) => async dispatch => {
 // }
 
 const spotsReducer = (state = initialState, action) => {
+    let newState = {...state};
     switch (action.type) {
         case SET_SPOTS:
             let normalizedSpots = {}; 
             action.spots.forEach(spot => {
                 normalizedSpots[spot.id] = spot
             })
-            return {...state, spots: normalizedSpots};
+            newState.spots = normalizedSpots
+            return newState
         case SET_SPOT_DETAILS:
-             return {...state, spotDetails: action.spotDetails};
+            newState.spotDetails = action.spotDetails
+             return newState
         case CREATE_SPOT:
-            return {...state.spots, ...{[action.spot.id]: action.spot}};
+            newState.spots[action.spot.id] = action.spot
+            return newState
+
         default:
             return state;
     }
