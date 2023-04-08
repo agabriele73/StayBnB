@@ -8,7 +8,7 @@ function SpotDetails({ isLoaded }) {
     const dispatch = useDispatch();
     // const spots = useSelector(state => state.spots.spots);
     const spot = useSelector(state => state.spots.spotDetails);
-
+   
     useEffect(() => {
         dispatch(spotsActions.fetchSpotDetails(spotId));
         // dispatch(spotsActions.fetchSpotReviews(spotId));

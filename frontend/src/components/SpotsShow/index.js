@@ -9,15 +9,13 @@ import './SpotShow.css';
 
 function SpotsShow({isLoaded}) {
     const dispatch = useDispatch();
-    const spots = useSelector(state => state.spots.spots);
+    const spots = useSelector(state => Object.values(state.spots.spots));
     console.log(spots)
     
     useEffect(() => {
-        if (!spots) {
 
             dispatch(spotsActions.fetchSpots());
-        }
-    }, [dispatch, spots]);
+    }, [dispatch]);
 
 
     
@@ -58,7 +56,7 @@ function SpotsShow({isLoaded}) {
 
     return isLoaded && spots && (
         <div className="spots-container">
-            {Object.values(spots).map(spot => (
+            {spots.map(spot => (
                 
                 <Link to={`/spots/${spot.id}`} className="spot-link" key={spot.id}> 
 

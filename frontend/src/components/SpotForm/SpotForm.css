@@ -1,15 +1,37 @@
 .spot-form {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    margin-left: 200px;
-    margin-right: 200px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+}
+
+.spot-form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.spot-form input,
+.spot-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.spot-form textarea {
+    resize: vertical;
 }
 
 .spot-button {
-    display: flex;
-    margin-top: 20px;
+    background-color: #ccc;
+    color: white;
+    font-size: 14pt;
 }
+
+.create-spot {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+}
+

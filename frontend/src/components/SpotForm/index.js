@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './SpotForm.css';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as spotsActions from "../../store/spots";
 import { useHistory } from "react-router-dom";
 
@@ -17,16 +17,22 @@ function SpotForm() {
     const [address, setAddress] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    const [previewImage, setPreviewImage] = useState('');
-    const [image2, setImage2] = useState('');
-    const [image3, setImage3] = useState('');
-    const [image4, setImage4] = useState('');
-    const [image5, setImage5] = useState('');
+    const [previewImage, setPreviewImage] = useState({url: '', previewImg: true});
+    const [image2, setImage2] = useState({url: '', previewImg: false});
+    const [image3, setImage3] = useState({url: '', previewImg: false});
+    const [image4, setImage4] = useState({url: '', previewImg: false});
+    const [image5, setImage5] = useState({url: '', previewImg: false});
     const [name, setName] = useState('');
+    const [errors, setErrors] = useState([]);
+
+
+    const currSpotDetails = useSelector(state => state.spots.spotDetails)
+    console.log('this is curr spot', currSpotDetails)
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const spotImages = [previewImage, image2, image3, image4, image5]
 
         const formData = {
             country,
@@ -35,15 +41,21 @@ function SpotForm() {
             address,
             description,
             price,
-            previewImage: previewImage,
             name
         }
-        let createdSpot;
-
-        await dispatch(spotsActions.postSpot(formData)).then((spot) => {
-            history.push(`/spots/${spot.newSpot.id}`)
+    
+        await dispatch(spotsActions.postSpot(formData, spotImages)).then((spot) => {
+            let spotId = parseInt(spot.newSpot.id, 10)
+            history.push(`/spots/${spotId}`)
+        }).catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) {
+                setErrors(...errors, data.errors);
+                } else {
+                setErrors(...errors, 'Something went wrong');
+             }
         })
-       
+
 
     }
 
@@ -68,10 +80,13 @@ function SpotForm() {
     // }
 
     return (
-<div className="create-spot-page">
+<div className="create-spot">
 
 
     <form className="spot-form" onSubmit={handleSubmit}>
+        {errors.map((error, idx) => (
+            <p key={idx} className="errors">{error}</p>
+        ))}
         <h1>Create a new Spot</h1>
 
         <div className="section-1">
@@ -84,16 +99,16 @@ function SpotForm() {
             <br />
             <label>
                 Street Address
-                <input type="text"  value={address} placeholder="Address" onChange={(e) => setAddress(e.target.value)} />
+                <input type="text"  value={address} placeholder="Address" onChange={(e) => setAddress(e.target.value)} required/>
             </label>
             <br />
             <label>
                 City
-                <input type="text" value={city} placeholder="City" onChange={(e) => setCity(e.target.value)}/>
+                <input type="text" value={city} placeholder="City" onChange={(e) => setCity(e.target.value)} required/>
             </label>,
             <label>
                 State
-                <input type="text"  value={state} placeholder="State"  onChange={(e) => setState(e.target.value)}/>
+                <input type="text"  value={state} placeholder="State"  onChange={(e) => setState(e.target.value)} required/>
             </label>
         </div>
 
@@ -102,7 +117,7 @@ function SpotForm() {
         <div className="section-2">
             <h3>Describe your place to guests</h3>
             <h4>Mention the best featuires of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</h4>
-            <textarea value={description} placeholder="Please Write at least 30 characters"  rows='10'  cols="50" onChange={(e) => setDescription(e.target.value)}></textarea>
+            <textarea value={description} placeholder="Please Write at least 30 characters"   onChange={(e) => setDescription(e.target.value)} minLength='30'></textarea>
             <br />
         </div>
 
@@ -128,15 +143,15 @@ function SpotForm() {
         <div className="section-5">
             <h3>Liven up your spot with photos</h3>
             <h4>Submit a link to at least one photo to publish your spot.</h4>
-            <input type="text"  placeholder="Preview Image URL" value={previewImage} onChange={(e) => setPreviewImage(e.target.value)} />
+            <input type="text"  placeholder="Preview Image URL" value={previewImage.url} onChange={(e) => setPreviewImage({url: e.target.value, previewImg: true})} />
             <br />
-            <input type="text"  placeholder="Image URL" value={image2}  onChange={(e) => setImage2(e.target.value)}/>
+            <input type="text"  placeholder="Image URL" value={image2.url}  onChange={(e) => setImage2({url: e.target.value, previewImg: false})}/>
             <br />
-            <input type="text"  placeholder="Image URL" value={image3}  onChange={(e) => setImage3(e.target.value)}/>
+            <input type="text"  placeholder="Image URL" value={image3.url}  onChange={(e) => setImage3({url: e.target.value, previewImg: false})}/>
             <br />
-            <input type="text"  placeholder="Image URL" value={image4}  onChange={(e) => setImage4(e.target.value)}/>
+            <input type="text"  placeholder="Image URL" value={image4.url}  onChange={(e) => setImage4({url: e.target.value, previewImg: false})}/>
             <br />
-            <input type="text"  placeholder="Image URL" value={image5}  onChange={(e) => setImage5(e.target.value)}/>
+            <input type="text"  placeholder="Image URL" value={image5.url}  onChange={(e) => setImage5({url: e.target.value, previewImg: false})}/>
             <br />
         </div>
 
