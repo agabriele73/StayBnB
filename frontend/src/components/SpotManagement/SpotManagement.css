@@ -1,0 +1,6 @@
+.update-delete {
+    display: flex;
+    gap: 15px;
+    padding: 10px;
+    align-items: center;
+}

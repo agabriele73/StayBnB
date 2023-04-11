@@ -50,7 +50,10 @@ button {
     border-radius: 5px;
     border: black solid 3px;
     cursor: pointer;
+    box-shadow: 5px 5px 10px #333;
 }
+
+
 
 .session-signup {
     display: flex;
@@ -218,5 +221,20 @@ button {
     margin-bottom: 20px;
     font-size: 24pt;
     font-weight: bold;
+    font-family: cursive;
+}
+
+
+.outer-buttons {
+    font-family: cursive;
+    display: flex;
+    gap: 10px;
+    padding: 5px;
+    align-items: center;
+    text-decoration: none;
+    font-style: none;
+}
+
+.inner-buttons {
     font-family: cursive;
 }

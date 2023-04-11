@@ -100,6 +100,12 @@ export const postSpot = (spot, spotImages) => async dispatch => {
     return newSpot
 }
 
+export const fetchCurrUserSpots = () => async dispatch => {
+    const response = await csrfFetch('/api/spots/current');
+    const data = await response.json();
+    dispatch(setSpots(data.Spots));
+}
+
 
 // export const postSpotImage = (spotId, spotImage) => async dispatch => {
 //     const response = await csrfFetch(`/api/spots/${spotId}/images`, {
