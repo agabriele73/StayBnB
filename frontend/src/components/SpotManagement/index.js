@@ -1,20 +1,26 @@
-import React, { useEffect } from "react";
-import { usEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as spotsActions from "../../store/spots";
 import { Link } from "react-router-dom";
 import './SpotManagement.css';
-
-
+import OpenModalButton from '../OpenModalButton';
+import { useRef } from "react";
 
 const SpotManagement = () => {
     const dispatch = useDispatch();
     const spots = useSelector(state => Object.values(state.spots.spots));
-    
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const ulRef = useRef();
 
     useEffect(() => {
         dispatch(spotsActions.fetchCurrUserSpots())
-    }, [dispatch]);
+
+        if (isModalOpen) return 
+
+
+
+
+    }, [dispatch, isModalOpen]);
 
     const renderStars = (avgRating) => {
         const maxRating = 5;
@@ -46,6 +52,21 @@ const SpotManagement = () => {
         }
 
         return stars;
+    }
+
+
+    const ConfirmDelete = () => {
+
+        return (
+            <>
+                <p>Are you sure you want to delete this spot?</p>
+            <div className="confirm-buttons">
+
+                <button>yes</button>
+                <button>no</button>
+            </div>
+            </>
+        )
     }
 
     
@@ -91,7 +112,12 @@ const SpotManagement = () => {
                             <button>Update</button>
 
                         </Link>
-                            <button>Delete</button>
+                        < OpenModalButton
+                            buttonText={'Delete'}
+                            className={'delete-button'}
+                            modalComponent={< ConfirmDelete/>}
+                            onClick={() => setIsModalOpen(true)}
+                        />
                         </div>
                             
                     </div>
