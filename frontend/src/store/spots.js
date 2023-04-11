@@ -106,6 +106,22 @@ export const fetchCurrUserSpots = () => async dispatch => {
     dispatch(setSpots(data.Spots));
 }
 
+export const spotUpdate = (spot, spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(spot)
+    })
+
+
+        const updatedSpot = await response.json();
+        console.log('this is updated spot-------',updatedSpot)
+        dispatch(updateSpot(updatedSpot.updatedSpot))
+        return updatedSpot
+    
+}
 
 // export const postSpotImage = (spotId, spotImage) => async dispatch => {
 //     const response = await csrfFetch(`/api/spots/${spotId}/images`, {
@@ -146,6 +162,9 @@ const spotsReducer = (state = initialState, action) => {
              return newState
         case CREATE_SPOT:
             console.log('new spot from reducer',action)
+            newState.spots[action.spot.id] = action.spot
+            return newState
+        case UPDATE_SPOT: 
             newState.spots[action.spot.id] = action.spot
             return newState
         default:

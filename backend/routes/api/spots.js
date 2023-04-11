@@ -232,9 +232,9 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
     }
     const {
         address, city, state, country, lat, lng, name, description, price
-    } = req.body;
+        } = req.body;
 
-    if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
+    if (!address || !city || !state || !country || !name || !description || !price) {
         return res.status(400).json({ 
             "message": "Validation Error",
             "statusCode": 400,

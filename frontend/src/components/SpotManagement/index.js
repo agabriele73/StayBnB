@@ -48,22 +48,27 @@ const SpotManagement = () => {
         return stars;
     }
 
+    
 
     if (!spots.length) {
-        return (
+        return spots && (
             <Link to='/spots/new'>
                 <button>Create a New Spot</button>
             </Link>
         )
         } else {
 
-        return (
+        return spots && (
             <div>
                 <h1 style={{'fontFamily': 'cursive'}}>Manage Your Spots</h1>
-    
-                <Link to='/spots/new'>
-                    <button>Create a New Spot</button>
-                </Link>
+
+
+                {spots.length === 0 ? (
+
+                    <Link to='/spots/new'>
+                        <button>Create a New Spot</button>
+                    </Link>
+                ) : null}
     
                 <div className="spots-container">
                 {spots.map(spot => (
@@ -82,7 +87,10 @@ const SpotManagement = () => {
                         </div>
     
                         <div className="update-delete">
+                        <Link to={`/spots/${spot.id}/edit`}>
                             <button>Update</button>
+
+                        </Link>
                             <button>Delete</button>
                         </div>
                             
