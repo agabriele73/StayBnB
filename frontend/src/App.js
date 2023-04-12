@@ -7,7 +7,8 @@ import Navigation from './components/Navigation';
 import SpotsShow from './components/SpotsShow';
 import SpotDetails from './components/SpotDetails';
 import SpotForm from './components/SpotForm';
-
+import SpotManagement from './components/SpotManagement';
+import EditSpotForm from './components/EditSpot';
 
 function App() {
 const dispatch = useDispatch();
@@ -27,6 +28,12 @@ useEffect(() => {
           </Route>
           <Route path={`/spots/new`}>
             <SpotForm />
+          </Route>
+          <Route path='/spots/current'>
+            < SpotManagement />
+          </Route>
+          <Route path="/spots/:spotId/edit">
+            <EditSpotForm />
           </Route>
           <Route path="/spots/:spotId">
             <SpotDetails isLoaded={isLoaded} />

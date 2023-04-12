@@ -62,16 +62,16 @@ function SpotsShow({isLoaded}) {
 
 
                 <div className="spot-card" key={spot.id} data-spot-name={spot.name}>
-                        <img className='spots-image' src={spot.previewImage} alt={spot.name} style={{width: '200px', height: '200px'}} />
-                        <div className="spot-info">
+                        <img className='spots-image' src={spot.previewImage} alt={spot.name} style={{ height: '200px'}} />
+                        
 
                         <div className="card-text">
                         <p>{spot.city}, {spot.state}</p>
                         {isNaN(spot.avgRating) ? <p className="spot-new">New</p> : <div className="stars-container">{renderStars(spot.avgRating)}{spot.avgRating}</div>}
 
-                        </div>
                         <p>${spot.price}/night</p>
                         </div>
+                        
                 </div>
                 </Link>
             ))}

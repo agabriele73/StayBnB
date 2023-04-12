@@ -45,19 +45,30 @@ const ProfileButton = ({user}) => {
 
     return (
         <>
+        <div className="outer-buttons">
             <NavLink to={`/spots/new`} >
                 Create a New Spot
             </NavLink>
             <button onClick={openMenu}>
                 <i className="fa-solid fa-user fa-sm"></i>
             </button>
+
+        </div>
+        <div className="inner-buttons">
+
             <ul className={ulClassName} ref={ulRef}>
                 <li>Hello, {user.firstName}</li>
                 <li>{user.email}</li>
+                < NavLink to={`/spots/current`}>
+                    <li>
+                      Manage Spots
+                    </li>
+                </NavLink>                
                 <li>
                     <button onClick={logout}>Logout</button>
                 </li>
             </ul>
+        </div>
         </>
     )
 }

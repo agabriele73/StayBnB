@@ -1,11 +1,25 @@
 .spot-form {
     display: flex;
     flex-direction: column;
+    font-family: cursive;
 }
 
 .spot-form label {
     display: block;
     margin-bottom: 10px;
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+
+.spot-form h4 {
+    font-size: 14pt;
+}
+
+.spot-form h3 {
+    font-size: 18pt;
+    font-weight: light;
+
 }
 
 .spot-form input,
@@ -15,6 +29,25 @@
     border: 2px solid #ccc;
     border-radius: 5px;
     margin-bottom: 20px;
+    max-width: 550px
+}
+
+
+.city-state {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.city-state label {
+    display: inline-block;
+    width: 80%;
+    margin-right: 4%;
+}
+
+.city-state input {
+    width: 100%;
+    max-width: 600px;
+    padding: 8px;
+    box-sizing: border-box;
 }
 
 .spot-form textarea {
@@ -25,6 +58,15 @@
     background-color: #ccc;
     color: white;
     font-size: 14pt;
+    max-width: 200px;
+    margin: auto;
+}
+  
+
+.errors {
+    color: red;
+    font-size: 12pt;
+    font-weight: bold;
 }
 
 .create-spot {
@@ -34,4 +76,14 @@
     padding: 20px;
     border-radius: 10px;
 }
+
+.spot-form .section-1,
+.spot-form .section-2,
+.spot-form .section-3,
+.spot-form .section-4,
+.spot-form .section-5 {
+    margin-bottom: 30px;
+    border-bottom: 4px solid black;
+}
+
 

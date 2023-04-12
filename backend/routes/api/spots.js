@@ -73,7 +73,7 @@ router.get('/', async (req, res, next) => {
             avg = sum / stars.length
             return avg.toFixed(1)
         })
-        console.log('rows--------', whereClause,rows )
+
         const spotsWithKeys = rows.map((spot, index) => {
             let url = spot.SpotImages[0]
             let spotToReturn = {
@@ -88,7 +88,7 @@ router.get('/', async (req, res, next) => {
 
         return spotToReturn
     })
-    console.log('spotswithkeys--------------',spotsWithKeys)
+    
     res.status(200).json({Spots: spotsWithKeys,
     page,
     size: size    
@@ -110,9 +110,11 @@ router.post('/', requireAuth, async (req, res, next) => {
             "country": "Country is required",
             "lat": "Latitude is not valid",
             "lng": "Longitude is not valid",
-            "name": "Name must be less than 50 characters",
-            "description": "Description is required",
-            "price": "Price per day is required"
+            "name": "Name is required",
+            "description": "Description needs a minimum of 30 characters",
+            "price": "Price per day is required",
+            "previewImage": "Preview image is required",
+            
             }
         })
     }
@@ -230,9 +232,9 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
     }
     const {
         address, city, state, country, lat, lng, name, description, price
-    } = req.body;
+        } = req.body;
 
-    if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
+    if (!address || !city || !state || !country || !name || !description || !price) {
         return res.status(400).json({ 
             "message": "Validation Error",
             "statusCode": 400,

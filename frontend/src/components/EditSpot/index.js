@@ -1,94 +1,82 @@
-import React, { useState } from "react";
-import './SpotForm.css';
-import { useDispatch, useSelector } from "react-redux";
+import React, {useState} from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useParams, useHistory } from "react-router-dom";
 import * as spotsActions from "../../store/spots";
-import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
 
 
 
 
-function SpotForm() {
+
+const EditSpotForm = () => {
     const dispatch = useDispatch();
+    const { spotId } = useParams()
     const history = useHistory();
-    
+
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [address, setAddress] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    const [previewImage, setPreviewImage] = useState({url: '', previewImg: true});
-    const [image2, setImage2] = useState({url: '', previewImg: false});
-    const [image3, setImage3] = useState({url: '', previewImg: false});
-    const [image4, setImage4] = useState({url: '', previewImg: false});
-    const [image5, setImage5] = useState({url: '', previewImg: false});
     const [name, setName] = useState('');
     const [errors, setErrors] = useState({});
 
 
     const currSpotDetails = useSelector(state => state.spots.spotDetails)
+    
+    
+
+   
+
+useEffect(() => {
+    dispatch(spotsActions.fetchSpotDetails(spotId))
 
 
+    if (currSpotDetails) {
+        setAddress(currSpotDetails.address)
+        setCountry(currSpotDetails.country)
+        setCity(currSpotDetails.city)
+        setState(currSpotDetails.state)
+        setDescription(currSpotDetails.description)
+        setPrice(currSpotDetails.price)
+        setName(currSpotDetails.name)
+        
+        
 
+    }
+}, [])
+
+
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const spotImages = [previewImage, image2, image3, image4, image5]
 
-        const formData = {
+        const spot = {
+            address,
             country,
             city,
             state,
-            address,
             description,
             price,
-            name
+            name,
         }
-    
-        await dispatch(spotsActions.postSpot(formData, spotImages)).then((spot) => {
-            let spotId = parseInt(spot.newSpot.id, 10)
+
+        await dispatch(spotsActions.spotUpdate(spot, spotId)).then((spot) => {
             history.push(`/spots/${spotId}`)
-        }).catch(async (res) => {
-                const data = await res.json();
-                console.log('thids is the response---------------',data)
-                
-                if (data && data.errors) {
-                setErrors({...data.errors});
-                console.log('this is the errors after setErrors', errors)
-                } else {
-                setErrors([...errors, 'Something went wrong']);
-             }
         })
 
-
+     
+        
     }
 
-      
-
-    // const handleChange = (e) => {
-    //     setFormData({
-    //         ...formData,
-    //         [e.target.name]: e.target.value
-    //     })
-    // }
-
-    // const handleImageChange = (e, index) => {
-    //     const newImageUrls = [...formData.images];
-
-    //     newImageUrls[index] = e.target.value;
-
-    //     setFormData({
-    //         ...formData,
-    //         images: newImageUrls
-    //     })
-    // }
-
-    return currSpotDetails && (
-<div className="create-spot">
+    return (
+        <div className="create-spot">
 
 
     <form className="spot-form" onSubmit={handleSubmit}>
 
-        <h1>Create a new Spot</h1>
+        <h1>Update Spot</h1>
 
         <div className="section-1">
             <h3>Where's your place located at?</h3>
@@ -151,28 +139,11 @@ function SpotForm() {
         </div>
 
 
-        <div className="section-5">
-            <h3>Liven up your spot with photos</h3>
-            <h4>Submit a link to at least one photo to publish your spot.</h4>
-            <input type="text"  placeholder="Preview Image URL" value={previewImage.url} onChange={(e) => setPreviewImage({url: e.target.value, previewImg: true})} />
-                <p className="errors">{errors.previewImage}</p>
-            <br />
-            <input type="text"  placeholder="Image URL" value={image2.url}  onChange={(e) => setImage2({url: e.target.value, previewImg: false})}/>
-            <br />
-            <input type="text"  placeholder="Image URL" value={image3.url}  onChange={(e) => setImage3({url: e.target.value, previewImg: false})}/>
-            <br />
-            <input type="text"  placeholder="Image URL" value={image4.url}  onChange={(e) => setImage4({url: e.target.value, previewImg: false})}/>
-            <br />
-            <input type="text"  placeholder="Image URL" value={image5.url}  onChange={(e) => setImage5({url: e.target.value, previewImg: false})}/>
-            <br />
-        </div>
 
-
-            <button type="submit" className="spot-button">Create Spot</button>
+            <button type="submit" className="spot-button">Update Spot</button>
     </form>
-</ div>
+    </div>
     )
 }
 
-
-export default SpotForm;
+export default EditSpotForm;

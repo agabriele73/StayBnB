@@ -11,6 +11,7 @@ export const SET_SPOT_DETAILS = 'spots/SET_SPOT_DETAILS';
 export const CREATE_SPOT = 'spots/CREATE_SPOT';
 export const CREATE_SPOT_IMAGE = 'spots/CREATE_SPOT_IMAGE';
 export const UPDATE_SPOT = 'spots/UPDATE_SPOT'
+export const DELETE_SPOT = 'spots/DELETE_SPOT';
 
 export const setSpots = (spots) => ({
     type: SET_SPOTS,
@@ -36,6 +37,11 @@ export const createSpotImage = (spotId, spotImage) => ({
 export const updateSpot = (spot) => ({
     type: UPDATE_SPOT,
     spot
+})
+
+export const deleteSpot = (spotId) => ({
+    type: DELETE_SPOT,
+    spotId
 })
 
 
@@ -100,6 +106,40 @@ export const postSpot = (spot, spotImages) => async dispatch => {
     return newSpot
 }
 
+export const fetchCurrUserSpots = () => async dispatch => {
+    const response = await csrfFetch('/api/spots/current');
+    const data = await response.json();
+    dispatch(setSpots(data.Spots));
+}
+
+export const spotUpdate = (spot, spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(spot)
+    })
+
+
+        const updatedSpot = await response.json();
+        console.log('this is updated spot-------',updatedSpot)
+        dispatch(updateSpot(updatedSpot.updatedSpot))
+        return updatedSpot
+    
+}
+
+export const spotDeleteThunk = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    const deletedSpot = await response.json();
+    dispatch(deleteSpot(deletedSpot))
+    return deletedSpot
+}
 
 // export const postSpotImage = (spotId, spotImage) => async dispatch => {
 //     const response = await csrfFetch(`/api/spots/${spotId}/images`, {
@@ -141,6 +181,12 @@ const spotsReducer = (state = initialState, action) => {
         case CREATE_SPOT:
             console.log('new spot from reducer',action)
             newState.spots[action.spot.id] = action.spot
+            return newState
+        case UPDATE_SPOT: 
+            newState.spots[action.spot.id] = action.spot
+            return newState
+        case DELETE_SPOT:
+            delete newState.spots[action.spotId]
             return newState
         default:
             return state;
