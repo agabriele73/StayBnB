@@ -71,10 +71,16 @@
     border-radius: 5px;
     font-size: 14px;
     font-family: cursive;
+    box-shadow: 5px 5px 10px #333;
+
 }
+
+
 .spots-image {
     display: flex-box;
     border-radius: 8px;
     width: 100%;
+    box-shadow: 5px 5px 10px #333;
+    
 }
 

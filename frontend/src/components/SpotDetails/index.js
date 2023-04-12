@@ -2,6 +2,7 @@ import React, { useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import * as spotsActions from "../../store/spots";
+import "./SpotDetail.css";
 
 function SpotDetails({ isLoaded }) {
     const { spotId } = useParams();
@@ -52,10 +53,14 @@ function SpotDetails({ isLoaded }) {
     }
 
     return isLoaded && spot ? (
-        <div className="spotdetail-container">
+        <div className="spot-container">
+
+            <div className="spot-header">
+
             <h1>Spot Details</h1>
             <p>{spot.name}</p>
             <p>{spot.city}, {spot.state}, {spot.country}</p>
+            </div>
             {spot.SpotImages.map(image => (
                 <img src={image.url} alt={spot.name} key={image.id} style={{height: '300px', width: '300px'}}/>
             ))}
@@ -64,7 +69,7 @@ function SpotDetails({ isLoaded }) {
 
             <div className="reserve-container">
                 <p>${spot.price}/night</p>
-                <button onClick={handleReserve}>Reserve</button>
+                <button onClick={handleReserve}  className="reserve-button">Reserve</button>
                 {spot.avgStarRating === null ? 
                 <p className="spot-new">New</p> : 
                 <div className="stars-container">{renderStars(spot.avgStarRating)}{spot.avgStarRating}</div>}

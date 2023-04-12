@@ -1,0 +1,12 @@
+.spot-container {
+    display: block;
+}
+.reserve-button {
+    padding: 10px;
+    margin: 10px 10px 10px 10px;
+}
+
+.spot-header {
+    display: block;
+    font-family: cursive;
+}
