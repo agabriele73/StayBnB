@@ -9,6 +9,7 @@ function SpotDetails({ isLoaded }) {
     const dispatch = useDispatch();
     // const spots = useSelector(state => state.spots.spots);
     const spot = useSelector(state => state.spots.spotDetails);
+     const user = useSelector(state => state.session.user);
    
     useEffect(() => {
         dispatch(spotsActions.fetchSpotDetails(spotId));
@@ -52,6 +53,17 @@ function SpotDetails({ isLoaded }) {
         return stars;
     }
 
+    const renderPostReview = () => {
+        if (user && user.id !== spot.Owner.id) {
+            return (
+                <div className="review-container">
+                    <button> post a review</button>
+                </div>
+
+            )
+        }
+    }
+
     return isLoaded && spot ? (
         <div className="spot-container">
 
@@ -87,7 +99,7 @@ function SpotDetails({ isLoaded }) {
                 </p>
                 <h2>{spot.numReviews} {spot.numReviews === 1 ? 'Review' : 'Reviews'}</h2>
             
-
+            {renderPostReview}
             </div>
             )}
         </div>
