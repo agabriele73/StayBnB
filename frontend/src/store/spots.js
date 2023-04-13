@@ -179,7 +179,6 @@ const spotsReducer = (state = initialState, action) => {
             newState.spotDetails = action.spotDetails
              return newState
         case CREATE_SPOT:
-            console.log('new spot from reducer',action)
             newState.spots[action.spot.id] = action.spot
             return newState
         case UPDATE_SPOT: 

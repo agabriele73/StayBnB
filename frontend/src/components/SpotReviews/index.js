@@ -2,18 +2,20 @@ import React from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as reviewActions from "../../store/reviews";
+import * as spotActions from "../../store/spots";
 
 
 
 const SpotReviews = () => {
     const dispatch = useDispatch();
-    const reviews  = useSelector(state => state.reviews.reviews);
+    const reviews  = useSelector(state => Object.values(state.reviews.reviews));
+    console.log(reviews);
     const spot = useSelector(state => state.spots.spotDetails);
     const user = useSelector(state => state.session.user);
 
-    useEffect(() => {
-        dispatch(reviewActions.fetchReviews(spot.id));
-    }, [dispatch, spot.id]);
+   
+
+    
 
     if (reviews.length === 0 && user && user.id !== spot.Owner.id) {
         return (
@@ -24,7 +26,7 @@ const SpotReviews = () => {
         )
     }
 
-    return reviews && (
+    return reviews.length && (
         <div className="review-container">
             {reviews.map(review => (
                 <div key={review.id}>

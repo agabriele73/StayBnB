@@ -5,6 +5,7 @@ import * as spotsActions from "../../store/spots";
 import "./SpotDetail.css";
 import OpenModalButton from "../OpenModalButton";
 import PostReviewModal from "../PostReviewModal";
+import * as reviewActions from "../../store/reviews";
 
 function SpotDetails({ isLoaded }) {
     const { spotId } = useParams();
@@ -15,7 +16,7 @@ function SpotDetails({ isLoaded }) {
    
     useEffect(() => {
         dispatch(spotsActions.fetchSpotDetails(spotId));
-        // dispatch(spotsActions.fetchSpotReviews(spotId));
+        dispatch(reviewActions.fetchReviews(spotId));
     }, [dispatch, spotId]);
 
     const handleReserve = (e) => {
@@ -62,7 +63,7 @@ function SpotDetails({ isLoaded }) {
                     <OpenModalButton 
                         buttonText="Post Your Review"
                         modalComponent={<PostReviewModal />}
-                        
+
                     />
                 </div>
 

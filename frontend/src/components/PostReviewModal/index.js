@@ -1,16 +1,39 @@
 import React, { useState } from "react";
+import * as reviewActions from "../../store/reviews";
+import { useSelector, useDispatch } from "react-redux";
 
 
 
 const PostReviewModal = () => {
     const [review, setReview] = useState("");
     const [starRating, setStarRating] = useState(0);
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
+    const spot = useSelector(state => state.spots.spotDetails);
 
     const handleRatingChange = (e) => {
         setStarRating(e.target.value);
+
+        
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
+        
+        const newReview = {
+            userId: user.id,
+            spotId: spot.id,
+            review,
+            stars: starRating
+        }
+
+        dispatch(reviewActions.createReview(newReview));
+
+        setReview("");
+        setStarRating(0);
+
+    }
 
 
     const renderStars = () => {
@@ -38,7 +61,7 @@ const PostReviewModal = () => {
     return (
         <div className="review-form"> 
             <h1>How was your stay?</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <textarea name="review" placeholder="Leave your review here..." onChange={(e) => setReview(e.target.value)}></textarea>
                 <div className="stars">
                     {renderStars()} 
