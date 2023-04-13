@@ -10,7 +10,7 @@ import './SpotShow.css';
 function SpotsShow({isLoaded}) {
     const dispatch = useDispatch();
     const spots = useSelector(state => Object.values(state.spots.spots));
-    console.log(spots)
+
     
     useEffect(() => {
 
@@ -61,7 +61,7 @@ function SpotsShow({isLoaded}) {
                 <Link to={`/spots/${spot.id}`} className="spot-link" key={spot.id}> 
 
 
-                <div className="spot-card" key={spot.id} data-spot-name={spot.name}>
+                <div className="spot-card"  data-spot-name={spot.name}>
                         <img className='spots-image' src={spot.previewImage} alt={spot.name} style={{ height: '200px'}} />
                         
 

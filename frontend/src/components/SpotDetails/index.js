@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import * as spotsActions from "../../store/spots";
 import "./SpotDetail.css";
+import OpenModalButton from "../OpenModalButton";
+import PostReviewModal from "../PostReviewModal";
 
 function SpotDetails({ isLoaded }) {
     const { spotId } = useParams();
@@ -57,7 +59,11 @@ function SpotDetails({ isLoaded }) {
         if (user && user.id !== spot.Owner.id) {
             return (
                 <div className="review-container">
-                    <button> post a review</button>
+                    <OpenModalButton 
+                        buttonText="Post Your Review"
+                        modalComponent={<PostReviewModal />}
+                        
+                    />
                 </div>
 
             )
@@ -99,7 +105,7 @@ function SpotDetails({ isLoaded }) {
                 </p>
                 <h2>{spot.numReviews} {spot.numReviews === 1 ? 'Review' : 'Reviews'}</h2>
             
-            {renderPostReview}
+            {renderPostReview()}
             </div>
             )}
         </div>

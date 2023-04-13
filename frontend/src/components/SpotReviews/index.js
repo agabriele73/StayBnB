@@ -19,12 +19,12 @@ const SpotReviews = () => {
         return (
             <div className="review-container">
                 <p>Be the first to post a review!</p>
-                
+                <button>Post Your Review</button>
             </div>
         )
     }
 
-    return spot && (
+    return reviews && (
         <div className="review-container">
             {reviews.map(review => (
                 <div key={review.id}>
@@ -35,6 +35,11 @@ const SpotReviews = () => {
             ))}
         </div>
     )
+    //  return (
+    //     <h1>reviews</h1>
+    //  )
+     
+    
 
 }
 

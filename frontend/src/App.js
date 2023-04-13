@@ -38,7 +38,7 @@ useEffect(() => {
           </Route>
           <Route path="/spots/:spotId">
             <SpotDetails isLoaded={isLoaded} />
-            < SpotReviews isLoaded={isLoaded}/>
+            < SpotReviews />
           </Route>
           <Route path="/spots/:spotId">
           </Route>
