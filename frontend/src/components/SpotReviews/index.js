@@ -22,57 +22,26 @@ const SpotReviews = () => {
         dispatch(reviewActions.fetchReviews(spotId));
     }, [dispatch, spotId]);
     
-    // // const handleSubmit = async (e) => {
-    // //     e.preventDefault();
+  
 
-        
-    // //     const newReview = {
-    // //         review,
-    // //         stars: starRating
-    // //     }
 
-    // //     dispatch(reviewActions.createReview(newReview));
-        
-    // //     await dispatch(reviewActions.fetchReviews(spot.id));
 
-    // //     setReview("");
-    // //     setStarRating(0);
-
-    // // }
-
-      const renderPostReview = () => {
-        if (user && user.id !== spot.Owner.id) {
-            return (
-                <div className="review-container">
-                    <OpenModalButton 
+    if (reviews.length === 0 && user.id !== spot.Owner.id) {
+        return (
+            <div className="review-container">
+                <p>Be the first to post a review!</p>
+                <OpenModalButton 
                         buttonText="Post Your Review"
                         modalComponent={<PostReviewModal />}
 
                     />
-                </div>
-
-            )
-        }
-    }
-
-
-
-    if (reviews.length === 0 && user && user.id !== spot.Owner.id) {
-        return (
-            <div className="review-container">
-                <p>Be the first to post a review!</p>
-                {/* <OpenModalButton 
-                        buttonText="Post Your Review"
-                        modalComponent={<PostReviewModal />}
-
-                    /> */}
             </div>
         )
     }
     
-    return reviews.length && (
+    return reviews.length && spot && (
         <div className="review-container">
-            {renderPostReview()}
+            {/* {renderPostReview()} */}
             {reviews.map(review => (
                 <div key={review.id}>
                     <p>{review.User.firstName}</p>
