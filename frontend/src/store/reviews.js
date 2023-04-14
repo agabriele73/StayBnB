@@ -6,6 +6,7 @@ const initialState = {
 
 const SPOT_REVIEWS = 'reviews/SPOT_REVIEWS';
 const POST_REVIEW = 'reviews/POST_REVIEW';
+const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
 
 
 export const setReviews = (reviews) => ({
@@ -16,6 +17,11 @@ export const setReviews = (reviews) => ({
 export const createReview = (review) =>  ({
     type: POST_REVIEW,
     review
+})
+
+export const deleteReview = (reviewId) => ({
+    type: DELETE_REVIEW,
+    reviewId
 })
 
 export const fetchReviews = (spotId) => async dispatch => {

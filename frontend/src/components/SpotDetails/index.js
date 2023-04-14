@@ -56,20 +56,20 @@ function SpotDetails({ isLoaded }) {
         return stars;
     }
 
-    const renderPostReview = () => {
-        if (user && user.id !== spot.Owner.id) {
-            return (
-                <div className="review-container">
-                    <OpenModalButton 
-                        buttonText="Post Your Review"
-                        modalComponent={<PostReviewModal />}
+    // const renderPostReview = () => {
+    //     if (user && user.id !== spot.Owner.id) {
+    //         return (
+    //             <div className="review-container">
+    //                 <OpenModalButton 
+    //                     buttonText="Post Your Review"
+    //                     modalComponent={<PostReviewModal />}
 
-                    />
-                </div>
+    //                 />
+    //             </div>
 
-            )
-        }
-    }
+    //         )
+    //     }
+    // }
 
     return isLoaded && spot ? (
         <div className="spot-container">
@@ -105,8 +105,8 @@ function SpotDetails({ isLoaded }) {
                 &nbsp;&middot;&nbsp;
                 </p>
                 <h2>{spot.numReviews} {spot.numReviews === 1 ? 'Review' : 'Reviews'}</h2>
-            
-                {renderPostReview()}
+{/*             
+                {renderPostReview()} */}
             </div>
             )}
         </div>

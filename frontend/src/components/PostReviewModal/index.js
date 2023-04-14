@@ -24,6 +24,7 @@ const PostReviewModal = () => {
 
         
         const newReview = {
+          
             review,
             stars: parseInt(
                 starRating, 10
@@ -42,7 +43,7 @@ const PostReviewModal = () => {
     const renderStars = () => {
         const stars = [];
 
-        for (let i = 0.5; i <= 5; i++) {
+        for (let i = 1; i <= 5; i++) {
             stars.push(
                 <label key={i}>
                     <input 
