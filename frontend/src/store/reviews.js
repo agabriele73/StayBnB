@@ -46,6 +46,18 @@ export const postReview = (spotId, review) => async dispatch => {
     return newReview
 }
 
+export const deleteReviewThunk = (reviewId) => async dispatch => {
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    const deletedReview = await response.json();
+    dispatch(deleteReview(deletedReview));
+    return deletedReview
+}
+
 const reviewReducer = (state = initialState, action) => {
     let newState = {...state};
     switch (action.type) {
@@ -59,6 +71,9 @@ const reviewReducer = (state = initialState, action) => {
         case POST_REVIEW:
             newState.reviews[action.review.id] = action.review;
             return newState;
+        case DELETE_REVIEW:
+            delete newState.reviews[action.reviewId];
+            return newState
         default:
             return state;
     }

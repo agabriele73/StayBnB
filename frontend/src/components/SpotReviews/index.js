@@ -29,7 +29,7 @@ const SpotReviews = () => {
 const renderPostReview = () => {
         if (reviews.length === 0 || (user && user.id !== spot.Owner.id)) {
             return (
-                <div className="review-container">
+                <div>
                     <OpenModalButton 
                         buttonText="Post Your Review"
                         modalComponent={<PostReviewModal />}
@@ -42,9 +42,9 @@ const renderPostReview = () => {
     }
 
 
-    if (reviews.length === 0) {
+    if (reviews.length === 0 && user.id !== spot.Owner.id) {
         return (
-            <div className="review-container">
+            <div>
                 <p>Be the first to post a review!</p>
                 <OpenModalButton 
                         buttonText="Post Your Review"
@@ -56,6 +56,9 @@ const renderPostReview = () => {
             </div>
         )
     }
+
+   
+    // console.log(e.target.id)
     
     return reviews.length && spot && (
         <div className="review-container">
@@ -68,7 +71,8 @@ const renderPostReview = () => {
                     {review.User.id === user.id && (
                         <OpenModalButton 
                             buttonText="Delete"
-                            modalComponent={<ConfirmReviewDeleteModal />}
+                            modalComponent={<ConfirmReviewDeleteModal reviewId={review.id}/>}
+                        
                         />
                     )}
                 </div>
