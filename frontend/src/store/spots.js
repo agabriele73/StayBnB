@@ -72,7 +72,7 @@ export const postSpot = (spot, spotImages) => async dispatch => {
     if(response.ok) {
 
         newSpot = await response.json();
-        console.log('this is new spot',newSpot)
+        // console.log('this is new spot',newSpot)
         //dispatch(createSpot(newSpot.newSpot));
         spotId = newSpot.newSpot.id
 
@@ -123,7 +123,6 @@ export const spotUpdate = (spot, spotId) => async dispatch => {
 
 
         const updatedSpot = await response.json();
-        console.log('this is updated spot-------',updatedSpot)
         dispatch(updateSpot(updatedSpot.updatedSpot))
         return updatedSpot
     

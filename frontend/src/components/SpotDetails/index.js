@@ -16,7 +16,7 @@ function SpotDetails({ isLoaded }) {
    
     useEffect(() => {
         dispatch(spotsActions.fetchSpotDetails(spotId));
-        dispatch(reviewActions.fetchReviews(spotId));
+        // dispatch(reviewActions.fetchReviews(spotId));
     }, [dispatch, spotId]);
 
     const handleReserve = (e) => {
@@ -106,7 +106,7 @@ function SpotDetails({ isLoaded }) {
                 </p>
                 <h2>{spot.numReviews} {spot.numReviews === 1 ? 'Review' : 'Reviews'}</h2>
             
-            {renderPostReview()}
+                {/* {renderPostReview()} */}
             </div>
             )}
         </div>

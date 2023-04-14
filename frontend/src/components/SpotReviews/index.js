@@ -3,31 +3,76 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as reviewActions from "../../store/reviews";
 import * as spotActions from "../../store/spots";
+import OpenModalButton from "../OpenModalButton";
+import PostReviewModal from "../PostReviewModal";
+import { useParams } from "react-router-dom";
 
 
 
 const SpotReviews = () => {
     const dispatch = useDispatch();
     const reviews  = useSelector(state => Object.values(state.reviews.reviews));
-    console.log(reviews);
+    console.log('these are the reviews----', reviews);
     const spot = useSelector(state => state.spots.spotDetails);
     const user = useSelector(state => state.session.user);
+    const { spotId } = useParams();
 
    
-
+    useEffect(() => {
+        dispatch(reviewActions.fetchReviews(spotId));
+    }, [dispatch, spotId]);
     
+    // // const handleSubmit = async (e) => {
+    // //     e.preventDefault();
+
+        
+    // //     const newReview = {
+    // //         review,
+    // //         stars: starRating
+    // //     }
+
+    // //     dispatch(reviewActions.createReview(newReview));
+        
+    // //     await dispatch(reviewActions.fetchReviews(spot.id));
+
+    // //     setReview("");
+    // //     setStarRating(0);
+
+    // // }
+
+      const renderPostReview = () => {
+        if (user && user.id !== spot.Owner.id) {
+            return (
+                <div className="review-container">
+                    <OpenModalButton 
+                        buttonText="Post Your Review"
+                        modalComponent={<PostReviewModal />}
+
+                    />
+                </div>
+
+            )
+        }
+    }
+
+
 
     if (reviews.length === 0 && user && user.id !== spot.Owner.id) {
         return (
             <div className="review-container">
                 <p>Be the first to post a review!</p>
-                <button>Post Your Review</button>
+                {/* <OpenModalButton 
+                        buttonText="Post Your Review"
+                        modalComponent={<PostReviewModal />}
+
+                    /> */}
             </div>
         )
     }
-
+    
     return reviews.length && (
         <div className="review-container">
+            {renderPostReview()}
             {reviews.map(review => (
                 <div key={review.id}>
                     <p>{review.User.firstName}</p>

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import * as reviewActions from "../../store/reviews";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 
 
 
 const PostReviewModal = () => {
+    const { spotId } = useParams();
     const [review, setReview] = useState("");
     const [starRating, setStarRating] = useState(0);
     const dispatch = useDispatch();
@@ -17,18 +19,19 @@ const PostReviewModal = () => {
         
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         
         const newReview = {
-            userId: user.id,
-            spotId: spot.id,
             review,
-            stars: starRating
+            stars: parseInt(
+                starRating, 10
+            )
         }
 
-        dispatch(reviewActions.createReview(newReview));
+        dispatch(reviewActions.postReview(spot.id, newReview));
+
 
         setReview("");
         setStarRating(0);
