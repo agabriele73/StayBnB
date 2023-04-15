@@ -15,7 +15,6 @@ const ConfirmReviewDeleteModal = ({ reviewId }) => {
     const { spotId } = useParams();
     const history = useHistory();
 
-    console.log('reviews----', reviews);
 
 
     const handleDelete = (e) => {
