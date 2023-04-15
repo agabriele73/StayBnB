@@ -45,7 +45,7 @@ useEffect(() => {
         
 
     }
-}, [])
+}, [currSpotDetails])
 
 
     

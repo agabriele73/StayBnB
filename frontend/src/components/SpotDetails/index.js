@@ -102,7 +102,7 @@ function SpotDetails({ isLoaded }) {
 
             
                 <div className="reserve-grid">
-                <p className="price">${spot.price.toFixed(2)} night</p>
+                <p className="price">${Number.isInteger(spot.price) ? spot.price.toFixed(2) : spot.price} night</p>
                 {isNaN(avgRating) ? 
                 <p className="fa-solid fa-star">New</p> : 
                 <p className="fa-solid fa-star">{avgRating.toFixed(1)} <p>&nbsp;&middot;&nbsp;</p> {reviews.length} {reviews.length === 1 ? 'review' : 'reviews'}</p>}
