@@ -46,7 +46,7 @@ const ProfileButton = ({user}) => {
     return (
         <>
         <div className="outer-buttons">
-            <NavLink to={`/spots/new`} style={{ "textDecoration": "none"}}>
+            <NavLink to='/spots/new' style={{ "textDecoration": "none"}}>
                 Create a New Spot
             </NavLink>
             <button onClick={openMenu}>
