@@ -67,7 +67,7 @@ const renderPostReview = () => {
                     <p>{review.User.firstName}</p>
                     <p>{new Date(review.createdAt).toLocaleString('en-us', {month: 'long', year: 'numeric'})}</p>
                     <p>{review.review}</p>
-                    {review.User.id === user.id ? (
+                    {user && review.User.id === user.id ? (
                         <OpenModalButton 
                             buttonText="Delete"
                             modalComponent={<ConfirmReviewDeleteModal reviewId={review.id}/>}
