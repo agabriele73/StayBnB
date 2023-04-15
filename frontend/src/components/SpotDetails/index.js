@@ -6,6 +6,8 @@ import "./SpotDetail.css";
 import OpenModalButton from "../OpenModalButton";
 import PostReviewModal from "../PostReviewModal";
 import * as reviewActions from "../../store/reviews";
+import { flushSync } from "react-dom";
+
 
 function SpotDetails({ isLoaded }) {
     const { spotId } = useParams();
@@ -98,10 +100,10 @@ function SpotDetails({ isLoaded }) {
 
             
                 <div className="reserve-grid">
-                <p>${spot.price}/night</p>
+                <p className="price">${spot.price.toFixed(2)} night</p>
                 {spot.avgStarRating === null ? 
-                <p className="spot-new">New</p> : 
-                <p>{renderStars(spot.avgStarRating)}{spot.avgStarRating.toFixed(1)}</p>}
+                <p className="fa-solid fa-star">New</p> : 
+                <p className="fa-solid fa-star">{spot.avgStarRating.toFixed(1)} <p>&nbsp;&middot;&nbsp;</p> {spot.numReviews} {spot.numReviews === 1 ? 'review' : 'reviews'}</p>}
                 <button onClick={handleReserve}  className="reserve-button">Reserve</button>
                 </div>
 
@@ -118,14 +120,23 @@ function SpotDetails({ isLoaded }) {
             <div className="review-count">
 
             {spot.numReviews === 0 ?
-             (<h2>No reviews yet for this spot</h2>) : (
+
+             
+            (
+            <div style={{ "display": "flex", "alignItems": "center", "justifyContent": "center", "wordSpacing": "5px"}}>
+                <p className="fa-solid fa-star">New   </p>   
+            </div>
+                ) : (
  
             <div className="reviews">
             {spot.avgStarRating === null ? 
                 <p className="spot-new">New</p> : 
                 <div className="stars-container">{renderStars(spot.avgStarRating)}{spot.avgStarRating.toFixed(1)}</div>}
                 <p>
+                <p>
+
                 &nbsp;&middot;&nbsp;
+                </p>
                 </p>
                 <h2>{spot.numReviews} {spot.numReviews === 1 ? 'review' : 'reviews'}</h2>
 

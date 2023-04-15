@@ -69,7 +69,7 @@ function SpotsShow({isLoaded}) {
                         <p>{spot.city}, {spot.state}</p>
                         {isNaN(spot.avgRating) ? <div className="stars-container"><p className="spot-new">New</p></div> : <div className="stars-container"><p className='fa-solid fa-star'>{spot.avgRating}</p></div>}
 
-                        <p>${spot.price}/night</p>
+                        <p>${spot.price.toFixed(2)}/night</p>
                         </div>
                         
                 </div>

@@ -40,10 +40,16 @@ export const postReview = (spotId, review) => async dispatch => {
         },
         body: JSON.stringify(review)
     })
-    const newReview = await response.json();
-    console.log('this is the new review-------', newReview)
-    dispatch(createReview(newReview));
-    return newReview
+    if (response.ok) {
+
+        const newReview = await response.json();
+        console.log('this is the new review-------', newReview)
+        dispatch(createReview(newReview));
+        return newReview
+    } else {
+        const data = await response.json();
+        return data
+    }
 }
 
 export const deleteReviewThunk = (reviewId) => async dispatch => {

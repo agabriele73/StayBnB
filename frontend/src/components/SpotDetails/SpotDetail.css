@@ -55,6 +55,10 @@
     border-bottom: solid 2px black;
 }
 
+.price {
+    font-size: 20pt;
+}
+
 .reserve-grid {
     display: grid;
     grid-column: 2;
@@ -72,7 +76,9 @@
 .reserve-grid > p {
     grid-row: 1 / span 1;
     text-align: center;
-    font-size: 12pt;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
 }
 
 .reserve-grid > button {

@@ -46,7 +46,7 @@ const ProfileButton = ({user}) => {
     return (
         <>
         <div className="outer-buttons">
-            <NavLink to={`/spots/new`} >
+            <NavLink to={`/spots/new`} style={{ "textDecoration": "none"}}>
                 Create a New Spot
             </NavLink>
             <button onClick={openMenu}>
@@ -56,16 +56,16 @@ const ProfileButton = ({user}) => {
         </div>
         <div className="inner-buttons">
 
-            <ul className={ulClassName} ref={ulRef} style={{ "listStyle": "none"}}>
-                <li>Hello, {user.firstName}</li>
-                <break/>
-                <li>{user.email}</li>
-                < NavLink to={`/spots/current`}>
-                    <li>
+            <ul className={ulClassName} ref={ulRef} style={{ "listStyle": "none", "border": "solid 2px black", "wordSpacing": "5px", "paddingLeft": "1px", "boxShadow": "5px 5px 10px #333"}}>
+                <li style={{ "marginBottom": "10px"}}>Hello, {user.firstName}</li>
+                <br/>
+                <li style={{ "marginBottom": "10px", "borderBottom": "1px solid #000000", "width": "100%", "padding": "5px 0"}}>{user.email}</li>
+                < NavLink to={`/spots/current`} style={{ "textDecoration": "none"}}>
+                    <li style={{ "marginBottom": "10px", "borderBottom": "1px solid #000000", "width": "100%", "padding": "5px 0"}}>
                       Manage Spots
                     </li>
                 </NavLink>                
-                <li>
+                <li  style={{ "display": "flex", "justifyContent": "center", "marginBottom": "4px", "boxShadow": "none"}}>
                     <button onClick={logout}>Logout</button>
                 </li>
             </ul>
