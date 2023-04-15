@@ -84,8 +84,8 @@ const SpotManagement = () => {
     
                         <div className="card-text">
                             <p>{spot.city}, {spot.state}</p>
-                            {(spot.avgRating === null) ? <p className="fa-solid fa-star">New</p> : <div className="stars-container"><p className="fa-solid fa-star">{spot.avgRating}</p></div>}
-                            <p>${spot.price}/night</p>
+                            {(spot.avgRating === null) ? <p className="fa-solid fa-star">New</p> : <div className="stars-container"><p className="fa-solid fa-star">{spot.avgRating.toFixed(1)}</p></div>}
+                            <p>${Number.isInteger(spot.price) ? spot.price.toFixed(2) : spot.price} night</p>
                         </div>
     
                         <div className="update-delete">
