@@ -84,7 +84,7 @@ const SpotManagement = () => {
     
                         <div className="card-text">
                             <p>{spot.city}, {spot.state}</p>
-                            {(spot.avgRating === null) ? <p className="spot-new">New</p> : <div className="stars-container">{renderStars(spot.avgRating)}{spot.avgRating}</div>}
+                            {(spot.avgRating === null) ? <p className="fa-solid fa-star">New</p> : <div className="stars-container"><p className="fa-solid fa-star">{spot.avgRating}</p></div>}
                             <p>${spot.price}/night</p>
                         </div>
     
