@@ -42,7 +42,7 @@ const renderPostReview = () => {
     }
 
 
-    if (reviews.length === 0 && user.id !== spot.Owner.id) {
+    if (reviews.length === 0 && spot && user.id !== spot.Owner.id) {
         return (
             <div>
                 <p>Be the first to post a review!</p>

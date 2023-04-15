@@ -1,7 +1,8 @@
 .spots-container {
     display: grid;
+    grid-auto-flow: row dense;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
+    grid-gap: 24px;
     margin-top: 10px;
     margin-bottom: 10px;
 
@@ -13,14 +14,14 @@
     }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 500px) {
     .spots-container {
         grid-template-columns: repeat(1, 1fr);
     }
 }
 @media only screen and (min-width: 1400px) {
     .spots-container {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(6, 1fr);
     }
 }
 .spot-link {
@@ -28,10 +29,14 @@
     color: black;
 }
 .card-text {
-    display: inline-block;
+    display: grid;
+    grid-auto-flow: row dense;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+    align-items: center;
     text-decoration: none;
     font-family: cursive;
-    padding: 10px;
+    
 }
 
 .card-text p {
@@ -53,8 +58,12 @@
 
 
 .spot-card {
+    display: block;
+    height: 100%;
+    width: 100%;
     position: relative;
-    border: 1px solid black;
+    border: none;
+    background: transparent;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -79,8 +88,12 @@
 .spots-image {
     display: flex-box;
     border-radius: 8px;
+    height: 100%;
     width: 100%;
-    box-shadow: 5px 5px 10px #333;
+    
     
 }
 
+div {
+    display: block;
+}
