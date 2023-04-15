@@ -43,7 +43,6 @@ export const postReview = (spotId, review) => async dispatch => {
     if (response.ok) {
 
         const newReview = await response.json();
-        console.log('this is the new review-------', newReview)
         dispatch(createReview(newReview));
         return newReview
     } else {
