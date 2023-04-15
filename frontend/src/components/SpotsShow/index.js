@@ -10,7 +10,7 @@ import './SpotShow.css';
 function SpotsShow({isLoaded}) {
     const dispatch = useDispatch();
     const spots = useSelector(state => Object.values(state.spots.spots));
-    console.log(spots)
+
     
     useEffect(() => {
 
@@ -61,13 +61,13 @@ function SpotsShow({isLoaded}) {
                 <Link to={`/spots/${spot.id}`} className="spot-link" key={spot.id}> 
 
 
-                <div className="spot-card" key={spot.id} data-spot-name={spot.name}>
-                        <img className='spots-image' src={spot.previewImage} alt={spot.name} style={{ height: '200px'}} />
+                <div className="spot-card"  data-spot-name={spot.name}>
+                        <img className='spots-image' src={spot.previewImage} alt={spot.name} style={{ height: '300px'}} />
                         
 
                         <div className="card-text">
                         <p>{spot.city}, {spot.state}</p>
-                        {isNaN(spot.avgRating) ? <p className="spot-new">New</p> : <div className="stars-container">{renderStars(spot.avgRating)}{spot.avgRating}</div>}
+                        {isNaN(spot.avgRating) ? <div className="stars-container"><p className="spot-new">New</p></div> : <div className="stars-container"><p className='fa-solid fa-star'>{spot.avgRating}</p></div>}
 
                         <p>${spot.price}/night</p>
                         </div>

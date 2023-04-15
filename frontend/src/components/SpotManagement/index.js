@@ -5,6 +5,7 @@ import './SpotManagement.css';
 import OpenModalButton from '../OpenModalButton';
 import { useRef } from "react";
 import { useHistory, Link } from "react-router-dom";
+import ConfirmDelete from "../ConfirmDeleteModal";
 
 const SpotManagement = () => {
     const dispatch = useDispatch();
@@ -54,41 +55,7 @@ const SpotManagement = () => {
         return stars;
     }
     
-    
-    const ConfirmDelete = () => {
-        const history = useHistory();
-        const modalRef = useRef(null);
-
-        useEffect(() => {
-            const closeModal = (e) => {
-                if (modalRef.current && !modalRef.current.contains(e.target)) {
-                    setShowModal(false)
-                }
-            }
-
-            document.addEventListener("mousedown", closeModal);
-
-            return () => document.removeEventListener("mousedown", closeModal);
-        }, [])
-        
-        const handleDelete = () => {
-            dispatch(spotsActions.spotDeleteThunk(currSpot.id));
-            history.push('/spots/current');
-        }
-
-
-        return (
-            <div className="confirm-container" ref={modalRef}>
-                <h1 >Confirm Delete</h1>
-                <p className="confirm-question">Are you sure you want to delete this spot?</p>
-            <div className="confirm-buttons">
-                    <button className="confirm-button" onClick={handleDelete}>Yes (Delete Spot)</button>
-                <button className="confirm-button">No (Keep Spot)</button>
-            </div>
-            </div >
-        )
-    }
-
+ 
     
 
     

@@ -3,16 +3,20 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import * as spotsActions from "../../store/spots";
 import "./SpotDetail.css";
+import OpenModalButton from "../OpenModalButton";
+import PostReviewModal from "../PostReviewModal";
+import * as reviewActions from "../../store/reviews";
 
 function SpotDetails({ isLoaded }) {
     const { spotId } = useParams();
     const dispatch = useDispatch();
     // const spots = useSelector(state => state.spots.spots);
     const spot = useSelector(state => state.spots.spotDetails);
+     const user = useSelector(state => state.session.user);
    
     useEffect(() => {
         dispatch(spotsActions.fetchSpotDetails(spotId));
-        // dispatch(spotsActions.fetchSpotReviews(spotId));
+        // dispatch(reviewActions.fetchReviews(spotId));
     }, [dispatch, spotId]);
 
     const handleReserve = (e) => {
@@ -52,28 +56,66 @@ function SpotDetails({ isLoaded }) {
         return stars;
     }
 
+    // const renderPostReview = () => {
+    //     if (user && user.id !== spot.Owner.id) {
+    //         return (
+    //             <div className="review-container">
+    //                 <OpenModalButton 
+    //                     buttonText="Post Your Review"
+    //                     modalComponent={<PostReviewModal />}
+
+    //                 />
+    //             </div>
+
+    //         )
+    //     }
+    // }
+
     return isLoaded && spot ? (
-        <div className="spot-container">
+        <div className="spotdetail-container">
 
-            <div className="spot-header">
+           
+            <h1>{spot.name}</h1>
+            <p className="location">{spot.city}, {spot.state}, {spot.country}</p>
 
-            <h1>Spot Details</h1>
-            <p>{spot.name}</p>
-            <p>{spot.city}, {spot.state}, {spot.country}</p>
-            </div>
+
+            <div className="grid-container">
+
             {spot.SpotImages.map(image => (
-                <img src={image.url} alt={spot.name} key={image.id} style={{height: '300px', width: '300px'}}/>
+                <div className='item' key={image.id}>
+
+                    <img src={image.url} alt={spot.name}   />
+                </div>
             ))}
-            <p>{spot.description}</p>
+            </div>
 
+                <div className="description-grid">
 
-            <div className="reserve-container">
+               <div>    
+                <p>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</p>
+                <p>{spot.description}</p>
+               </div>
+
+            
+                <div className="reserve-grid">
                 <p>${spot.price}/night</p>
-                <button onClick={handleReserve}  className="reserve-button">Reserve</button>
                 {spot.avgStarRating === null ? 
                 <p className="spot-new">New</p> : 
-                <div className="stars-container">{renderStars(spot.avgStarRating)}{spot.avgStarRating}</div>}
-            </div>
+                <p>{renderStars(spot.avgStarRating)}{spot.avgStarRating.toFixed(1)}</p>}
+                <button onClick={handleReserve}  className="reserve-button">Reserve</button>
+                </div>
+
+                
+                </div>
+            
+            
+
+
+           
+
+
+
+            <div className="review-count">
 
             {spot.numReviews === 0 ?
              (<h2>No reviews yet for this spot</h2>) : (
@@ -81,16 +123,17 @@ function SpotDetails({ isLoaded }) {
             <div className="reviews">
             {spot.avgStarRating === null ? 
                 <p className="spot-new">New</p> : 
-                <div className="stars-container">{renderStars(spot.avgStarRating)}{spot.avgStarRating}</div>}
+                <div className="stars-container">{renderStars(spot.avgStarRating)}{spot.avgStarRating.toFixed(1)}</div>}
                 <p>
                 &nbsp;&middot;&nbsp;
                 </p>
-                <h2>{spot.numReviews} {spot.numReviews === 1 ? 'Review' : 'Reviews'}</h2>
-            
+                <h2>{spot.numReviews} {spot.numReviews === 1 ? 'review' : 'reviews'}</h2>
 
             </div>
             )}
+            </div>
         </div>
+    
     ) : null;
 }
 

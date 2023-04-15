@@ -9,6 +9,7 @@ import SpotDetails from './components/SpotDetails';
 import SpotForm from './components/SpotForm';
 import SpotManagement from './components/SpotManagement';
 import EditSpotForm from './components/EditSpot';
+import SpotReviews from './components/SpotReviews';
 
 function App() {
 const dispatch = useDispatch();
@@ -37,6 +38,9 @@ useEffect(() => {
           </Route>
           <Route path="/spots/:spotId">
             <SpotDetails isLoaded={isLoaded} />
+            < SpotReviews />
+          </Route>
+          <Route path="/spots/:spotId">
           </Route>
         </Switch>
       )}
