@@ -1,25 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as reviewActions from "../../store/reviews";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import "./PostReview.css"
 
+import { useModal } from '../../context/Modal';
 
 
 const PostReviewModal = () => {
     const { spotId } = useParams();
     const [review, setReview] = useState("");
     const [starRating, setStarRating] = useState(0);
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState({});
+    const [modalOpen, setModalOpen] = useState(true);
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     const spot = useSelector(state => state.spots.spotDetails);
+    const history = useHistory();
+    const { closeModal } = useModal();
 
     const handleRatingChange = (e) => {
         setStarRating(e.target.value);
 
         
     }
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -33,21 +38,18 @@ const PostReviewModal = () => {
             )
         }
 
-       await  dispatch(reviewActions.postReview(spot.id, newReview)).then(() => {
-
-           setReview("")
-           setStarRating(0);
-           setErrors({});
-       }
-
-        ).catch((error) => {
-            setErrors([...errors, "Review already exists for this spot"]);
+       await  dispatch(reviewActions.postReview(spot.id, newReview)).then(closeModal).catch((error) => {
+           setErrors({...errors, errors: "Review already exists for this spot"});
         })
-
-
-
+        
+        
     }
-
+    
+   
+    
+    const handleClick = () => {
+        closeModal();
+    }
     
     const renderStars = () => {
         const stars = [];
@@ -72,23 +74,30 @@ const PostReviewModal = () => {
     }
 
     return (
+        <>
+        {modalOpen && (
+            
         <div className="reviewform-container">
             <h1>How was your stay?</h1>
                 <div className="error">
                 
-                {errors}
+                {Object.values(errors).map((error, idx) => (
+                    <p key={idx}>{error}</p>
+                ))}
                 </div>
             <form onSubmit={handleSubmit}>
                 <textarea name="review" placeholder="Leave your review here..." onChange={(e) => setReview(e.target.value)}></textarea>
                 <div className="stars">
                     
                     {renderStars()} 
-                    
+                
                     <p>stars</p>
                 </div>
-                <button disabled={review.length <  10}>Submit Your Review</button>
+                <button disabled={review.length <  10}  >Submit Your Review</button>
             </form>
         </div>
+        )}
+        </>
     )
 }
 

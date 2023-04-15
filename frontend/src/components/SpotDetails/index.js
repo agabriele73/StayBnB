@@ -15,7 +15,8 @@ function SpotDetails({ isLoaded }) {
     // const spots = useSelector(state => state.spots.spots);
     const spot = useSelector(state => state.spots.spotDetails);
      const user = useSelector(state => state.session.user);
-   
+     const reviews = useSelector(state => Object.values(state.reviews.reviews));
+
     useEffect(() => {
         dispatch(spotsActions.fetchSpotDetails(spotId));
         // dispatch(reviewActions.fetchReviews(spotId));
@@ -25,6 +26,8 @@ function SpotDetails({ isLoaded }) {
         e.preventDefault();
         window.alert('Feature coming soon!');
     }
+
+    const avgRating = reviews.reduce((acc, review) => acc + review.stars, 0) / reviews.length;
 
     const renderStars = (avgRating) => {
         const maxRating = 5;
@@ -101,9 +104,9 @@ function SpotDetails({ isLoaded }) {
             
                 <div className="reserve-grid">
                 <p className="price">${spot.price.toFixed(2)} night</p>
-                {spot.avgStarRating === null ? 
+                {isNaN(avgRating) ? 
                 <p className="fa-solid fa-star">New</p> : 
-                <p className="fa-solid fa-star">{spot.avgStarRating.toFixed(1)} <p>&nbsp;&middot;&nbsp;</p> {spot.numReviews} {spot.numReviews === 1 ? 'review' : 'reviews'}</p>}
+                <p className="fa-solid fa-star">{avgRating.toFixed(1)} <p>&nbsp;&middot;&nbsp;</p> {reviews.length} {reviews.length === 1 ? 'review' : 'reviews'}</p>}
                 <button onClick={handleReserve}  className="reserve-button">Reserve</button>
                 </div>
 
@@ -119,7 +122,7 @@ function SpotDetails({ isLoaded }) {
 
             <div className="review-count">
 
-            {spot.numReviews === 0 ?
+            {reviews.length === 0 ?
 
              
             (
@@ -129,16 +132,25 @@ function SpotDetails({ isLoaded }) {
                 ) : (
  
             <div className="reviews">
-            {spot.avgStarRating === null ? 
-                <p className="spot-new">New</p> : 
-                <div className="stars-container">{renderStars(spot.avgStarRating)}{spot.avgStarRating.toFixed(1)}</div>}
-                <p>
+            {isNaN(avgRating) ? 
+                <p className="fa-solid fa-star">New</p> : 
+                <div className="stars-container" style={{"display": "flex", "alignItems": "center", "justifyContent": "center"}}>
+                    
+                    
+
+                    <p className="fa-solid fa-star" style={{"display": "flex", "alignItems": "center", "justifyContent": "center"}}>
+                    {avgRating.toFixed(1)}
+                    </p>
+                
+                
                 <p>
 
                 &nbsp;&middot;&nbsp;
                 </p>
-                </p>
-                <h2>{spot.numReviews} {spot.numReviews === 1 ? 'review' : 'reviews'}</h2>
+        
+                <h2>{reviews.length} {reviews.length === 1 ? 'review' : 'reviews'}</h2>
+                </div>}
+        
 
             </div>
             )}
