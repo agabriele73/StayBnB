@@ -49,11 +49,10 @@ function SpotForm() {
             history.push(`/spots/${spotId}`)
         }).catch(async (res) => {
                 const data = await res.json();
-                console.log('thids is the response---------------',data)
+    
                 
                 if (data && data.errors) {
                 setErrors({...data.errors});
-                console.log('this is the errors after setErrors', errors)
                 } else {
                 setErrors([...errors, 'Something went wrong']);
              }

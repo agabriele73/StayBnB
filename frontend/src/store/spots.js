@@ -72,7 +72,7 @@ export const postSpot = (spot, spotImages) => async dispatch => {
     if(response.ok) {
 
         newSpot = await response.json();
-        // console.log('this is new spot',newSpot)
+        
         //dispatch(createSpot(newSpot.newSpot));
         spotId = newSpot.newSpot.id
 
@@ -94,13 +94,13 @@ export const postSpot = (spot, spotImages) => async dispatch => {
                     
                     const newSpotImage = await response2.json();
                     newImages[newSpotImage.id] = newSpotImage
-                    //console.log('this is new spotImage',newSpotImage)
+                    
                     return newSpotImage
                 }
             }
         })
     }
-    //console.log('new spot from thunk',newSpot)
+   
     //dispatch(createSpotImage(spotId, newSpotImage));
     dispatch(createSpot(newSpot.newSpot))
     return newSpot
@@ -150,7 +150,7 @@ export const spotDeleteThunk = (spotId) => async dispatch => {
 //     })
 //     if(response.ok) {
 //         const newSpotImage = await response.json();
-//         console.log('this is new spotImage',newSpotImage)
+//         
 //         dispatch(createSpotImage(spotId, newSpotImage.newSpotImage));
 //         return newSpotImage
 //     }
