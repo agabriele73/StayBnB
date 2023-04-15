@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as spotsActions from "../../store/spots";
 import './SpotManagement.css';
 import OpenModalButton from '../OpenModalButton';
-import { useRef } from "react";
-import { useHistory, Link } from "react-router-dom";
+// import { useRef } from "react";
+import {  Link } from "react-router-dom";
 import ConfirmDelete from "../ConfirmDeleteModal";
 
 const SpotManagement = () => {
     const dispatch = useDispatch();
     const spots = useSelector(state => Object.values(state.spots.spots));
-    const currSpot = useSelector(state => state.spots.spotDetails);
-    const [showModal, setShowModal] = useState(false);
+    // const currSpot = useSelector(state => state.spots.spotDetails);
+    // const [showModal, setShowModal] = useState(false);
 
     
     useEffect(() => {
@@ -23,37 +23,37 @@ const SpotManagement = () => {
         
     }, [dispatch]);
     
-    const renderStars = (avgRating) => {
-        const maxRating = 5;
-        const starWidth = 18;
-        const starHeight = 16;
-        const starStyle = {
-            width: `${starWidth}px`,
-            height: `${starHeight}px`,
-            display: "inline-block",
+    // const renderStars = (avgRating) => {
+    //     const maxRating = 5;
+    //     const starWidth = 18;
+    //     const starHeight = 16;
+    //     const starStyle = {
+    //         width: `${starWidth}px`,
+    //         height: `${starHeight}px`,
+    //         display: "inline-block",
             
-        };
+    //     };
         
-        let stars = [];
-        const fullStars = Math.floor(avgRating)
-        for (let i = 0; i < fullStars; i++) {
-            stars.push(<div key={i} className="fa-solid fa-star" style={starStyle}></div>);
-        }
+    //     let stars = [];
+    //     const fullStars = Math.floor(avgRating)
+    //     for (let i = 0; i < fullStars; i++) {
+    //         stars.push(<div key={i} className="fa-solid fa-star" style={starStyle}></div>);
+    //     }
         
-        const halfStars = avgRating - fullStars;
-        if (halfStars > 0) {
-            stars.push(<div key="half-star" className="fa-solid fa-star-half-alt" style={starStyle}></div>);
-        }
+    //     const halfStars = avgRating - fullStars;
+    //     if (halfStars > 0) {
+    //         stars.push(<div key="half-star" className="fa-solid fa-star-half-alt" style={starStyle}></div>);
+    //     }
         
         
         
-        const remainingStars = maxRating - stars.length;
-        for (let i = 0; i < remainingStars; i++) {
-            stars.push(<div key={maxRating - 1} className="far fa-star" style={starStyle}></div>)
-        }
+    //     const remainingStars = maxRating - stars.length;
+    //     for (let i = 0; i < remainingStars; i++) {
+    //         stars.push(<div key={maxRating - 1} className="far fa-star" style={starStyle}></div>)
+    //     }
         
-        return stars;
-    }
+    //     return stars;
+    // }
     
  
     
@@ -84,8 +84,8 @@ const SpotManagement = () => {
     
                         <div className="card-text">
                             <p>{spot.city}, {spot.state}</p>
-                            {(spot.avgRating === null) ? <p className="fa-solid fa-star">New</p> : <div className="stars-container"><p className="fa-solid fa-star">{spot.avgRating}</p></div>}
-                            <p>${spot.price}/night</p>
+                            {(spot.avgRating === null) ? <p className="fa-solid fa-star">New</p> : <div className="stars-container"><p className="fa-solid fa-star">{spot.avgRating.toFixed(1)}</p></div>}
+                            <p>${Number.isInteger(spot.price) ? spot.price.toFixed(2) : spot.price} night</p>
                         </div>
     
                         <div className="update-delete">
