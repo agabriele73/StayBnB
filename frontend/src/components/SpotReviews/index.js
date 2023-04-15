@@ -58,7 +58,7 @@ const renderPostReview = () => {
     }
 
    
-    // console.log(e.target.id)
+    
     
     return reviews.length && spot && (
         <div className="review-container">
