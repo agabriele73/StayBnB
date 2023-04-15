@@ -28,26 +28,26 @@ const EditSpotForm = () => {
     
 
    
+    
+    useEffect(() => {
+        dispatch(spotsActions.fetchSpotDetails(spotId))
 
-useEffect(() => {
-    dispatch(spotsActions.fetchSpotDetails(spotId))
-
-
-    if (currSpotDetails) {
-        setAddress(currSpotDetails.address)
-        setCountry(currSpotDetails.country)
-        setCity(currSpotDetails.city)
-        setState(currSpotDetails.state)
-        setDescription(currSpotDetails.description)
-        setPrice(currSpotDetails.price)
-        setName(currSpotDetails.name)
+        if (currSpotDetails) {
+            setAddress(currSpotDetails.address)
+            setCountry(currSpotDetails.country)
+            setCity(currSpotDetails.city)
+            setState(currSpotDetails.state)
+            setDescription(currSpotDetails.description)
+            setPrice(currSpotDetails.price)
+            setName(currSpotDetails.name)
+            
+            
+    
+        }
         
-        
-
-    }
-}, [currSpotDetails])
-
-
+    }, [dispatch, spotId])
+    
+    
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -70,7 +70,7 @@ useEffect(() => {
         
     }
 
-    return (
+    return currSpotDetails && (
         <div className="create-spot">
 
 
