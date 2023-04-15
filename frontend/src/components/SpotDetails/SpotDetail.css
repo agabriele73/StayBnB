@@ -51,6 +51,7 @@
     font-family: cursive;
     font-weight: 500;
     margin-top: 10px;
+    grid-gap: 30px;
     border-bottom: solid 2px black;
 }
 

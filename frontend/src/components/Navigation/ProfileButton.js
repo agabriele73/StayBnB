@@ -56,8 +56,9 @@ const ProfileButton = ({user}) => {
         </div>
         <div className="inner-buttons">
 
-            <ul className={ulClassName} ref={ulRef}>
+            <ul className={ulClassName} ref={ulRef} style={{ "listStyle": "none"}}>
                 <li>Hello, {user.firstName}</li>
+                <break/>
                 <li>{user.email}</li>
                 < NavLink to={`/spots/current`}>
                     <li>
