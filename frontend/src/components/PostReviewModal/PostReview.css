@@ -1,0 +1,42 @@
+.reviewform-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16pt;
+    font-family: cursive;
+    width: 600px;
+}
+
+
+.stars {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.reviewform-container textarea {
+    font-size: 16pt;
+    font-family: cursive;
+    width: 400px;
+    height: 200px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.reviewform-container button {
+    font-size: 16pt;
+    font-family: cursive;
+    width: 400px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 20px;
+}
+
+.error {
+    color: red;
+}

@@ -7,6 +7,7 @@ import OpenModalButton from "../OpenModalButton";
 import PostReviewModal from "../PostReviewModal";
 import { useParams } from "react-router-dom";
 import ConfirmReviewDeleteModal from "../ConfirmReviewDeleteModal";
+import "./SpotReviews.css"
 
 
 
@@ -28,13 +29,13 @@ const SpotReviews = () => {
 const renderPostReview = () => {
         if (reviews.length === 0 || (user && user.id !== spot.Owner.id)) {
             return (
-                <div>
+        
                     <OpenModalButton 
                         buttonText="Post Your Review"
                         modalComponent={<PostReviewModal />}
 
                     />
-                </div>
+            
 
             )
         }
@@ -43,7 +44,7 @@ const renderPostReview = () => {
 
     if (reviews.length === 0 && spot && user.id !== spot.Owner.id) {
         return (
-            <div>
+            <div className="review-container">
                 <p>Be the first to post a review!</p>
                 <OpenModalButton 
                         buttonText="Post Your Review"
@@ -61,9 +62,10 @@ const renderPostReview = () => {
     
     return reviews.length && spot && (
         <div className="review-container">
+            
             {renderPostReview()}
             {reviews.map(review => (
-                <div key={review.id}>
+                <div key={review.id} className="solo-review">
                     <p>{review.User.firstName}</p>
                     <p>{new Date(review.createdAt).toLocaleString('en-us', {month: 'long', year: 'numeric'})}</p>
                     <p>{review.review}</p>

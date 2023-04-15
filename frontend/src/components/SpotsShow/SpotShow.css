@@ -21,8 +21,17 @@
 }
 @media only screen and (min-width: 1400px) {
     .spots-container {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
+}
+
+
+@media only screen and (min-width: 1600px) {
+    .spots-container {
+        grid-template-columns: repeat(6, 1fr);
+
+    }
+ 
 }
 .spot-link {
     text-decoration: none;
