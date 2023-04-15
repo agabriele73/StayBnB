@@ -3,10 +3,9 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import * as spotsActions from "../../store/spots";
 import "./SpotDetail.css";
-import OpenModalButton from "../OpenModalButton";
-import PostReviewModal from "../PostReviewModal";
-import * as reviewActions from "../../store/reviews";
-import { flushSync } from "react-dom";
+// import OpenModalButton from "../OpenModalButton";
+// import PostReviewModal from "../PostReviewModal";
+// import * as reviewActions from "../../store/reviews";
 
 
 function SpotDetails({ isLoaded }) {
@@ -14,7 +13,7 @@ function SpotDetails({ isLoaded }) {
     const dispatch = useDispatch();
     // const spots = useSelector(state => state.spots.spots);
     const spot = useSelector(state => state.spots.spotDetails);
-     const user = useSelector(state => state.session.user);
+    //  const user = useSelector(state => state.session.user);
      const reviews = useSelector(state => Object.values(state.reviews.reviews));
 
     useEffect(() => {
@@ -29,37 +28,37 @@ function SpotDetails({ isLoaded }) {
 
     const avgRating = reviews.reduce((acc, review) => acc + review.stars, 0) / reviews.length;
 
-    const renderStars = (avgRating) => {
-        const maxRating = 5;
-        const starWidth = 18;
-        const starHeight = 16;
-        const starStyle = {
-            width: `${starWidth}px`,
-            height: `${starHeight}px`,
-            display: "inline-block",
+    // const renderStars = (avgRating) => {
+    //     const maxRating = 5;
+    //     const starWidth = 18;
+    //     const starHeight = 16;
+    //     const starStyle = {
+    //         width: `${starWidth}px`,
+    //         height: `${starHeight}px`,
+    //         display: "inline-block",
            
-        };
+    //     };
 
-        let stars = [];
-        const fullStars = Math.floor(avgRating)
-        for (let i = 0; i < fullStars; i++) {
-            stars.push(<div key={i} className="fa-solid fa-star" style={starStyle}></div>);
-        }
+    //     let stars = [];
+    //     const fullStars = Math.floor(avgRating)
+    //     for (let i = 0; i < fullStars; i++) {
+    //         stars.push(<div key={i} className="fa-solid fa-star" style={starStyle}></div>);
+    //     }
 
-        const halfStars = avgRating - fullStars;
-        if (halfStars > 0) {
-            stars.push(<div key="half-star" className="fa-solid fa-star-half-alt" style={starStyle}></div>);
-        }
+    //     const halfStars = avgRating - fullStars;
+    //     if (halfStars > 0) {
+    //         stars.push(<div key="half-star" className="fa-solid fa-star-half-alt" style={starStyle}></div>);
+    //     }
 
     
 
-        const remainingStars = maxRating - stars.length;
-        for (let i = 0; i < remainingStars; i++) {
-            stars.push(<div key={maxRating - 1} className="far fa-star" style={starStyle}></div>)
-        }
+    //     const remainingStars = maxRating - stars.length;
+    //     for (let i = 0; i < remainingStars; i++) {
+    //         stars.push(<div key={maxRating - 1} className="far fa-star" style={starStyle}></div>)
+    //     }
 
-        return stars;
-    }
+    //     return stars;
+    // }
 
     // const renderPostReview = () => {
     //     if (user && user.id !== spot.Owner.id) {

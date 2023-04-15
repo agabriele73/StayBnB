@@ -9,7 +9,7 @@ const ConfirmDelete = () => {
     const history = useHistory();
     const modalRef = useRef(null);
     const dispatch = useDispatch();
-    const spots = useSelector(state => Object.values(state.spots.spots));
+    // const spots = useSelector(state => Object.values(state.spots.spots));
     const currSpot = useSelector(state => state.spots.spotDetails);
     const { closeModal } = useModal();
 

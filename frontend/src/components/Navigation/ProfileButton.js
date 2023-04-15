@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
-import { Link, NavLink, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 
 const ProfileButton = ({user}) => {
@@ -37,11 +37,11 @@ const ProfileButton = ({user}) => {
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
 
-    const handleClick = (e) => {
-        e.preventDefault();
+    // const handleClick = (e) => {
+    //     e.preventDefault();
 
-        history.push('/spots/new')
-    }
+    //     history.push('/spots/new')
+    // }
 
     return (
         <>

@@ -1,8 +1,8 @@
 import React from "react";
 import * as reviewActions from "../../store/reviews";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+// import { useParams } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { useModal } from '../../context/Modal';
 
 
@@ -12,8 +12,8 @@ import { useModal } from '../../context/Modal';
 const ConfirmReviewDeleteModal = ({ reviewId }) => {
     const dispatch = useDispatch();
     const reviews  = useSelector(state => Object.values(state.reviews.reviews));
-    const { spotId } = useParams();
-    const history = useHistory();
+    // const { spotId } = useParams();
+    // const history = useHistory();
     const { closeModal } = useModal();
 
 

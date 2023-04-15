@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState  } from "react";
 import * as reviewActions from "../../store/reviews";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+// import {  useHistory } from "react-router-dom";
 import "./PostReview.css"
 
 import { useModal } from '../../context/Modal';
 
 
 const PostReviewModal = () => {
-    const { spotId } = useParams();
+    // const { spotId } = useParams();
     const [review, setReview] = useState("");
     const [starRating, setStarRating] = useState(0);
     const [errors, setErrors] = useState({});
-    const [modalOpen, setModalOpen] = useState(true);
+    // const [modalOpen, setModalOpen] = useState(true);
     const dispatch = useDispatch();
-    const user = useSelector(state => state.session.user);
+    // const user = useSelector(state => state.session.user);
     const spot = useSelector(state => state.spots.spotDetails);
-    const history = useHistory();
+    //const history = useHistory();
     const { closeModal } = useModal();
 
     const handleRatingChange = (e) => {
@@ -47,9 +47,9 @@ const PostReviewModal = () => {
     
    
     
-    const handleClick = () => {
-        closeModal();
-    }
+    // const handleClick = () => {
+    //     closeModal();
+    // }
     
     const renderStars = () => {
         const stars = [];
@@ -74,8 +74,8 @@ const PostReviewModal = () => {
     }
 
     return (
-        <>
-        {modalOpen && (
+        
+        
             
         <div className="reviewform-container">
             <h1>How was your stay?</h1>
@@ -96,8 +96,8 @@ const PostReviewModal = () => {
                 <button disabled={review.length <  10}  >Submit Your Review</button>
             </form>
         </div>
-        )}
-        </>
+    
+        
     )
 }
 
