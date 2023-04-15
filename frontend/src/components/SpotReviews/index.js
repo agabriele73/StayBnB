@@ -13,7 +13,6 @@ import ConfirmReviewDeleteModal from "../ConfirmReviewDeleteModal";
 const SpotReviews = () => {
     const dispatch = useDispatch();
     const reviews  = useSelector(state => Object.values(state.reviews.reviews));
-    console.log('these are the reviews----', reviews);
     const spot = useSelector(state => state.spots.spotDetails);
     const user = useSelector(state => state.session.user);
     const { spotId } = useParams();
@@ -68,13 +67,13 @@ const renderPostReview = () => {
                     <p>{review.User.firstName}</p>
                     <p>{new Date(review.createdAt).toLocaleString('en-us', {month: 'long', year: 'numeric'})}</p>
                     <p>{review.review}</p>
-                    {review.User.id === user.id && (
+                    {review.User.id === user.id ? (
                         <OpenModalButton 
                             buttonText="Delete"
                             modalComponent={<ConfirmReviewDeleteModal reviewId={review.id}/>}
                         
                         />
-                    )}
+                    ) : null}
                 </div>
             ))}
         </div>
