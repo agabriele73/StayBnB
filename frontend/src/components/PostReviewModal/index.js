@@ -74,16 +74,16 @@ const PostReviewModal = () => {
     return (
         <div className="reviewform-container">
             <h1>How was your stay?</h1>
-                <p className="error">
+                <div className="error">
                 
                 {errors}
-                </p>
+                </div>
             <form onSubmit={handleSubmit}>
                 <textarea name="review" placeholder="Leave your review here..." onChange={(e) => setReview(e.target.value)}></textarea>
                 <div className="stars">
-                    <p>
+                    
                     {renderStars()} 
-                    </p>
+                    
                     <p>stars</p>
                 </div>
                 <button disabled={review.length <  10}>Submit Your Review</button>
