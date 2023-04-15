@@ -76,14 +76,16 @@ const PostReviewModal = () => {
             <h1>How was your stay?</h1>
                 <div className="error">
                 
-                {errors}
+                {Object.values(errors).map((error, idx) => (
+                    <p key={idx}>{error}</p>
+                ))}
                 </div>
             <form onSubmit={handleSubmit}>
                 <textarea name="review" placeholder="Leave your review here..." onChange={(e) => setReview(e.target.value)}></textarea>
                 <div className="stars">
                     
                     {renderStars()} 
-                    
+                
                     <p>stars</p>
                 </div>
                 <button disabled={review.length <  10}>Submit Your Review</button>
