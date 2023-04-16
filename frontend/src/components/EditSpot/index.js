@@ -9,6 +9,7 @@ import { useEffect } from "react";
 
 
 const EditSpotForm = () => {
+    
     const dispatch = useDispatch();
     const { spotId } = useParams()
     const history = useHistory();
@@ -22,30 +23,31 @@ const EditSpotForm = () => {
     const [name, setName] = useState('');
     const [errors, setErrors] = useState({});
 
-
+    const userId  = useSelector(state => state.session.user.id);
     const currSpotDetails = useSelector(state => state.spots.spotDetails)
-    
-    
+    const ownerId = useSelector(state => state.spots.spotDetails?.Owner?.id)
 
+    
+    
    
     
     useEffect(() => {
         dispatch(spotsActions.fetchSpotDetails(spotId))
 
-        if (currSpotDetails) {
-            setAddress(currSpotDetails.address)
-            setCountry(currSpotDetails.country)
-            setCity(currSpotDetails.city)
-            setState(currSpotDetails.state)
-            setDescription(currSpotDetails.description)
-            setPrice(currSpotDetails.price)
-            setName(currSpotDetails.name)
+        if (currSpotDetails && (userId === ownerId)) {
+            setAddress(currSpotDetails?.address || '');
+            setCountry(currSpotDetails?.country || '');
+            setCity(currSpotDetails?.city || '');
+            setState(currSpotDetails?.state || '');
+            setDescription(currSpotDetails?.description || '');
+            setPrice(currSpotDetails?.price || '');
+            setName(currSpotDetails?.name || '');
             
             
     
         }
         
-    }, [dispatch, spotId])
+    }, [dispatch, currSpotDetails, spotId, userId, ownerId])
     
     
     
