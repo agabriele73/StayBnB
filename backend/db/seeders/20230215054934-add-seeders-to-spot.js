@@ -17,8 +17,8 @@ const locations = [
     lat: 37.7645358,
     lng: -122.4730327,
     name: "App Academy",
-    description: "Place where web developers are created",
-    price: 123
+    description: "Relax in our charming cottage nestled in the woods. Perfect for nature lovers. Serene setting with modern amenities. Book now for an unforgettable getaway!",
+    price: 123.00
   },
   {
     ownerId: 1,
@@ -29,8 +29,8 @@ const locations = [
     lat: 40.7127753,
     lng: -74.0059728,
     name: "Empire State Building",
-    description: "Iconic skyscraper in Manhattan",
-    price: 200
+    description: "Stay at the iconic Empire State Building in Manhattan. Enjoy breathtaking views, prime location, and luxury amenities. Book your NYC experience now!",
+    price: 220.45
   },
   {
     ownerId: 3,
@@ -41,8 +41,8 @@ const locations = [
     lat: 51.504847,
     lng: -0.150628,
     name: "Dorchester Hotel",
-    description: "Luxury hotel in Mayfair",
-    price: 500
+    description: "Indulge in luxury at the renowned Dorchester Hotel in Mayfair, London. Elegant rooms, impeccable service, and world-class amenities. Book your upscale stay now!",
+    price: 545.45
   },
   {
     ownerId: 2,
@@ -53,8 +53,8 @@ const locations = [
     lat: 48.8485402,
     lng: 2.3200663,
     name: "Le Bon Marché",
-    description: "Luxury department store",
-    price: 400
+    description: "Experience Parisian elegance at Le Bon Marché, a luxury department store. Chic shopping, gourmet dining, and the epitome of French style. Book your Paris getaway now!",
+    price: 410.25
   },
   {
     ownerId: 4,
@@ -65,8 +65,8 @@ const locations = [
     lat: 34.1374595,
     lng: -118.3565306,
     name: "Universal Studios Hollywood",
-    description: "Movie-themed amusement park",
-    price: 150
+    description: "Immerse yourself in the magic of Universal Studios Hollywood. Thrilling rides, movie-themed attractions, and unforgettable entertainment. Book your Hollywood adventure now!",
+    price: 150.35
   }
 ];
 

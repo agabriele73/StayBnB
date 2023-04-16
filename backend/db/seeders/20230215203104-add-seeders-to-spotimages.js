@@ -17,9 +17,49 @@ const previewImages =
     previewImg: true
   },
   {
+    spotId: 1,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
+  },
+  {
+    spotId: 1,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
+  },
+  {
+    spotId: 1,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
+  },
+  {
+    spotId: 1,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
+  },
+  {
     spotId: 2,
     url: "https://source.unsplash.com/random/?House/",
     previewImg: true
+  },
+  {
+    spotId: 2,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
+  },  
+  {
+    spotId: 2,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
+  },  
+  {
+    spotId: 2,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
+  },  
+  {
+    spotId: 2,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
   },
   {
     spotId: 3,
@@ -27,14 +67,74 @@ const previewImages =
     previewImg: true
   },
   {
+    spotId: 3,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
+  },
+  {
+    spotId: 3,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
+  },
+  {
+    spotId: 3,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
+  },
+  {
+    spotId: 3,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
+  },
+ {
     spotId: 4,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: true
+  },
+  {
+    spotId: 4,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
+  },
+  {
+    spotId: 4,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
+  },
+  {
+    spotId: 4,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
+  },
+  {
+    spotId: 4,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
+  },
+  {
+    spotId: 5,
     url: "https://source.unsplash.com/random/?House/",
     previewImg: true
   },
   {
     spotId: 5,
     url: "https://source.unsplash.com/random/?House/",
-    previewImg: true
+    previewImg: false
+  },
+  {
+    spotId: 5,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
+  },
+  {
+    spotId: 5,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
+  },
+  {
+    spotId: 5,
+    url: "https://source.unsplash.com/random/?House/",
+    previewImg: false
   }
 ]
 

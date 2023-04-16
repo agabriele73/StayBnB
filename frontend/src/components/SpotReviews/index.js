@@ -27,7 +27,7 @@ const SpotReviews = () => {
   
     
 const renderPostReview = () => {
-        if (reviews.length === 0 || (user && user.id !== spot.Owner.id)) {
+        if (user && user.id !== spot.Owner.id && reviews.length === 0) {
             return (
         
                     <OpenModalButton 
@@ -42,7 +42,7 @@ const renderPostReview = () => {
     }
 
 
-    if (reviews.length === 0 && spot && user.id !== spot.Owner.id) {
+    if (reviews && reviews.length === 0 && spot && user && user.id !== spot.Owner.id) {
         return (
             <div className="review-container">
                 <p>Be the first to post a review!</p>
