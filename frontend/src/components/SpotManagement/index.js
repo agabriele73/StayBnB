@@ -15,6 +15,8 @@ const SpotManagement = () => {
 
     
     useEffect(() => {
+
+        
         dispatch(spotsActions.fetchCurrUserSpots())
         
         
