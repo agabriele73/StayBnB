@@ -18,7 +18,7 @@ const locations = [
     lng: -122.4730327,
     name: "App Academy",
     description: "Relax in our charming cottage nestled in the woods. Perfect for nature lovers. Serene setting with modern amenities. Book now for an unforgettable getaway!",
-    price: 123.00
+    price: 125.45
   },
   {
     ownerId: 1,
