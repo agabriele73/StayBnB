@@ -76,7 +76,7 @@ const EditSpotForm = () => {
         
     }
 
-    return currSpotDetails && (
+    return !loading && currSpotDetails ? (
         <div className="create-spot">
 
 
@@ -149,6 +149,8 @@ const EditSpotForm = () => {
             <button type="submit" className="spot-button">Update Spot</button>
     </form>
     </div>
+    ) : (
+        <h1>Loading...</h1>
     )
 }
 
