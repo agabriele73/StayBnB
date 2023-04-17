@@ -15,7 +15,7 @@ function SpotsShow({isLoaded}) {
     useEffect(() => {
 
             dispatch(spotsActions.fetchSpots());
-    }, []);
+    }, [dispatch]);
 
 
     
@@ -62,14 +62,14 @@ function SpotsShow({isLoaded}) {
 
 
                 <div className="spot-card"  data-spot-name={spot.name}>
-                        <img className='spots-image' src={spot.previewImage} alt={spot.name} style={{ height:  '300px'}}/>
+                        <img className='spots-image' src={spot.previewImage} alt={spot.name} style={{ height: '300px'}} />
                         
 
                         <div className="card-text">
                         <p>{spot.city}, {spot.state}</p>
                         {isNaN(spot.avgRating) ? <div className="stars-container"><p className="fa-solid fa-star">New</p></div> : <div className="stars-container"><p className='fa-solid fa-star'>{spot.avgRating}</p></div>}
 
-                        <p>${Number.isInteger(spot.price) ? spot.price.toFixed(2) : spot.price} night</p>
+                        <p>${spot.price.toFixed(2)} night</p>
                         </div>
                         
                 </div>
