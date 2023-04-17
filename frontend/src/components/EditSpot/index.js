@@ -22,19 +22,23 @@ const EditSpotForm = () => {
     const [price, setPrice] = useState('');
     const [name, setName] = useState('');
     const [errors, setErrors] = useState({});
+    const [loading, setLoading] = useState(true);
 
     const userId  = useSelector(state => state.session.user.id);
     const currSpotDetails = useSelector(state => state.spots.spotDetails)
     const ownerId = useSelector(state => state.spots.spotDetails?.Owner?.id)
 
     
-    
+    useEffect(() => {
+        dispatch(spotsActions.fetchSpotDetails(spotId)).then(() => {
+          setLoading(false); 
+        });
+      }, [dispatch, spotId]);
    
     
     useEffect(() => {
-        dispatch(spotsActions.fetchSpotDetails(spotId))
 
-        if (currSpotDetails && (userId === ownerId)) {
+        if (!loading &&currSpotDetails && (userId === ownerId)) {
             setAddress(currSpotDetails?.address || '');
             setCountry(currSpotDetails?.country || '');
             setCity(currSpotDetails?.city || '');
@@ -47,7 +51,7 @@ const EditSpotForm = () => {
     
         }
         
-    }, [dispatch, spotId, userId, ownerId])
+    }, [userId, ownerId, loading, currSpotDetails]);
     
     
     
