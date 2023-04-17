@@ -62,7 +62,7 @@ function SpotsShow({isLoaded}) {
 
 
                 <div className="spot-card"  data-spot-name={spot.name}>
-                        <img className='spots-image' src={spot.previewImage} alt={spot.name} style={{ height: '300px'}} />
+                        <img className='spots-image' src={spot.previewImage} alt={spot.name} style={{ height:  '300px'}}/>
                         
 
                         <div className="card-text">

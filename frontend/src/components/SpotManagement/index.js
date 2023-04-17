@@ -81,7 +81,7 @@ const SpotManagement = () => {
     
     
                     <div className="spot-card" key={spot.id} data-spot-name={spot.name}>
-                            <img className='spots-image' src={spot.previewImage} alt={spot.name} style={{ height: '200px'}} />
+                            <img className='spots-image' src={spot.previewImage} alt={spot.name} style={{ height:  '300px'}} />
                             
     
                         <div className="card-text">
