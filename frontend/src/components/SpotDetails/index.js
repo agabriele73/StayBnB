@@ -124,9 +124,8 @@ function SpotDetails({ isLoaded }) {
             {reviews.length === 0 ?
 
              
-            (
-            <div style={{ "display": "flex", "alignItems": "center", "justifyContent": "center", "wordSpacing": "5px"}}>
-                <p className="fa-solid fa-star">New   </p>   
+            (<div style={{ "display": "flex", "alignItems": "center", "justifyContent": "center", "wordSpacing": "5px"}}>
+                <p className="fa-solid fa-star">New</p>   
             </div>
                 ) : (
  
@@ -142,10 +141,10 @@ function SpotDetails({ isLoaded }) {
                     </p>
                 
                 
-                <p>
+                
 
                 &nbsp;&middot;&nbsp;
-                </p>
+                
         
                 <h2>{reviews.length} {reviews.length === 1 ? 'review' : 'reviews'}</h2>
                 </div>}

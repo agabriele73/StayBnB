@@ -80,9 +80,7 @@ const renderPostReview = () => {
             ))}
         </div>
     )
-    //  return (
-    //     <h1>reviews</h1>
-    //  )
+  
      
     
 
