@@ -37,7 +37,7 @@ useEffect(() => {
             <EditSpotForm />
           </Route>
           <Route path="/spots/:spotId">
-            <SpotDetails isLoaded={isLoaded} />
+            <SpotDetails  />
             < SpotReviews />
           </Route>
           <Route path="/spots/:spotId">
