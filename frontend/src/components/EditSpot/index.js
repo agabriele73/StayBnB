@@ -47,7 +47,7 @@ const EditSpotForm = () => {
     
         }
         
-    }, [dispatch, currSpotDetails, spotId, userId, ownerId])
+    }, [dispatch, spotId, userId, ownerId])
     
     
     
