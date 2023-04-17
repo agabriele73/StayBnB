@@ -27,7 +27,7 @@ const SpotReviews = () => {
   
     
 const renderPostReview = () => {
-        if (user && user.id !== spot.Owner.id && reviews.length === 0) {
+        if ((user && user.id !== spot.Owner.id ) || reviews.length === 0) {
             return (
         
                     <OpenModalButton 
