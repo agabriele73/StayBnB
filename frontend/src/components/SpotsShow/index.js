@@ -15,7 +15,7 @@ function SpotsShow({isLoaded}) {
     useEffect(() => {
 
             dispatch(spotsActions.fetchSpots());
-    }, [dispatch]);
+    }, []);
 
 
     
