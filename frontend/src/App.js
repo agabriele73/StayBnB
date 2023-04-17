@@ -25,7 +25,7 @@ useEffect(() => {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-          <SpotsShow isLoaded={isLoaded} />
+          <SpotsShow  />
           </Route>
           <Route path={`/spots/new`}>
             <SpotForm />

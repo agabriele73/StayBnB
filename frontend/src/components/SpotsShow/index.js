@@ -7,7 +7,7 @@ import './SpotShow.css';
 
 
 
-function SpotsShow({isLoaded}) {
+function SpotsShow() {
     const dispatch = useDispatch();
     const spots = useSelector(state => Object.values(state.spots.spots));
 
@@ -54,7 +54,7 @@ function SpotsShow({isLoaded}) {
 
  
 
-    return isLoaded && spots && (
+    return spots && (
         <div className="spots-container">
             {spots.map(spot => (
                 
