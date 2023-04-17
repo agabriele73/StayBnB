@@ -8,7 +8,7 @@ import "./SpotDetail.css";
 // import * as reviewActions from "../../store/reviews";
 
 
-function SpotDetails({ isLoaded }) {
+function SpotDetails() {
     const { spotId } = useParams();
     const dispatch = useDispatch();
     // const spots = useSelector(state => state.spots.spots);
@@ -75,7 +75,7 @@ function SpotDetails({ isLoaded }) {
     //     }
     // }
 
-    return isLoaded && spot ? (
+    return spot ? (
         <div className="spotdetail-container">
 
            
@@ -136,9 +136,7 @@ function SpotDetails({ isLoaded }) {
                     
                     
 
-                    <p className="fa-solid fa-star" style={{"display": "flex", "alignItems": "center", "justifyContent": "center"}}>
-                    {avgRating.toFixed(1)}
-                    </p>
+                    <p className="fa-solid fa-star" style={{"display": "flex", "alignItems": "center", "justifyContent": "center"}}>{avgRating.toFixed(1)}</p>
                 
                 
                 

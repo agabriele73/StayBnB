@@ -86,7 +86,7 @@ const SpotManagement = () => {
     
                         <div className="card-text">
                             <p>{spot.city}, {spot.state}</p>
-                            {(spot.avgRating === null) ? <div className="stars-container"><p className="fa-solid fa-star">New</p></div> : <div className="stars-container"><p className="fa-solid fa-star">{(parseFloat(spot?.avgRating)).toFixed(1)}</p></div>}
+                            {(spot.avgRating === null) ? <div className="stars-container"><p className="fa-solid fa-star">New</p></div> : <div className="stars-container"><p className="fa-solid fa-star">{(parseInt(spot?.avgRating)).toFixed(1)}</p></div>}
                             <p>${spot.price} night</p>
                         </div>
     
