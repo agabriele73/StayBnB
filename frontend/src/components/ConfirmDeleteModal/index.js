@@ -27,12 +27,16 @@ const ConfirmDelete = () => {
     }
     return (
         <div className="confirm-container" ref={modalRef}>
+            <form onSubmit={handleDelete}>
+
+            
             <h1 >Confirm Delete</h1>
             <p className="confirm-question">Are you sure you want to delete this spot?</p>
         <div className="confirm-buttons">
-                <button className="confirm-button" onClick={handleDelete}>Yes (Delete Spot)</button>
+                <button className="confirm-button" >Yes (Delete Spot)</button>
             <button className="confirm-button" onClick={handleNo}>No (Keep Spot)</button>
         </div>
+        </form>
         </div >
     )
 }
