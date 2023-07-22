@@ -36,6 +36,12 @@
 .spot-link {
     text-decoration: none;
     color: black;
+    padding: 5px;
+}
+
+.spot-link:hover {
+    box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
 }
 .card-text {
     display: grid;

@@ -18,13 +18,13 @@ const SpotReviews = () => {
     const user = useSelector(state => state.session.user);
     const { spotId } = useParams();
 
-   
+
     useEffect(() => {
         dispatch(reviewActions.fetchReviews(spotId));
         dispatch(spotActions.fetchSpotDetails(spotId));
     }, [dispatch, spotId]);
     
-  
+
     
 const renderPostReview = () => {
         if ((user && user.id !== spot.Owner.id ) || reviews.length === 0) {
