@@ -8,3 +8,7 @@ Root {
     overflow : auto;
     background-color: yellow;
 }
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

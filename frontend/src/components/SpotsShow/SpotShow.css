@@ -31,7 +31,7 @@
         grid-template-columns: repeat(6, 1fr);
 
     }
- 
+
 }
 .spot-link {
     text-decoration: none;
@@ -39,24 +39,23 @@
     padding: 5px;
 }
 
-.spot-link:hover {
+/* .spot-link:hover {
     box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
-}
+    border: 2px solid black;
+} */
 .card-text {
     display: grid;
     grid-auto-flow: row dense;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 15px;
+    grid-gap: 5px;
     align-items: center;
     text-decoration: none;
-    font-family: cursive;
-    
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .card-text p {
-    font-size: 14pt;
-    font-weight: bold;
+    font-size: 14px;
 }
 
 .stars-container {
@@ -65,6 +64,7 @@
     text-align: right;
     text-decoration: none;
     margin-bottom: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .spot-new {
@@ -90,11 +90,11 @@
     left: 50%;
     transform: translateX(-50%);
     padding: 5px;
-    background-color: darkgrey;
-    color: white;
+    background-color: #fff;
+    color: #080808;
     border-radius: 5px;
     font-size: 14px;
-    font-family: cursive;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     box-shadow: 5px 5px 10px #333;
 
 }

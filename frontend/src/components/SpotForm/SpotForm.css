@@ -1,23 +1,23 @@
 .spot-form {
     display: flex;
     flex-direction: column;
-    font-family: cursive;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .spot-form label {
     display: block;
     margin-bottom: 10px;
     font-size: 14pt;
-    font-weight: bold;
 }
 
 
 .spot-form h4 {
-    font-size: 14pt;
+    font-size: 12pt;
+    font-weight: 200;
 }
 
 .spot-form h3 {
-    font-size: 18pt;
+    font-size: 16pt;
     font-weight: light;
 
 }
@@ -61,7 +61,7 @@
     max-width: 200px;
     margin: auto;
 }
-  
+
 
 .errors {
     color: red;

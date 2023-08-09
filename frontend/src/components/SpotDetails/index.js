@@ -115,35 +115,26 @@ function SpotDetails() {
             
 
 
-           
-
-
 
             <div className="review-count">
 
             {reviews.length === 0 ?
 
-             
+        
             (<div style={{ "display": "flex", "alignItems": "center", "justifyContent": "center", "wordSpacing": "5px"}}>
                 <p className="fa-solid fa-star">New</p>   
             </div>
                 ) : (
- 
+
             <div className="reviews">
             {isNaN(avgRating) ? 
                 <p className="fa-solid fa-star">New</p> : 
                 <div className="stars-container" style={{"display": "flex", "alignItems": "center", "justifyContent": "center"}}>
-                    
-                    
 
                     <p className="fa-solid fa-star" style={{"display": "flex", "alignItems": "center", "justifyContent": "center"}}>{avgRating.toFixed(1)}</p>
                 
-                
-                
 
                 &nbsp;&middot;&nbsp;
-                
-        
                 <h2>{reviews.length} {reviews.length === 1 ? 'review' : 'reviews'}</h2>
                 </div>}
         

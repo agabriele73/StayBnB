@@ -4,7 +4,7 @@
     padding-right: 80px;
     margin-left: auto;
     margin-right: auto;
-    font-family: cursive;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     justify-content: center;
     text-align: left;
     max-width: 1200px;
@@ -22,6 +22,6 @@
   }
 
 .solo-review {
-    font-size: 14pt;
+    font-size: 12pt;
 }
   
