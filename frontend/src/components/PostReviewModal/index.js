@@ -1,4 +1,4 @@
-import React, { useState  } from "react";
+import React, { useState, useEffect  } from "react";
 import * as reviewActions from "../../store/reviews";
 import { useSelector, useDispatch } from "react-redux";
 // import {  useHistory } from "react-router-dom";
@@ -24,6 +24,20 @@ const PostReviewModal = () => {
 
         
     }
+
+    useEffect(() => {
+        const handleKeyPress = (e) => {
+            if (e.key === "Escape") {
+                closeModal();
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyPress);
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyPress);
+        };
+    }, [closeModal]);
     
 
     const handleSubmit = async (e) => {
@@ -31,21 +45,21 @@ const PostReviewModal = () => {
 
         
         const newReview = {
-          
+        
             review,
             stars: parseInt(
                 starRating, 10
             )
         }
 
-       await  dispatch(reviewActions.postReview(spot.id, newReview)).then(closeModal).catch((error) => {
-           setErrors({...errors, errors: "Review already exists for this spot"});
+        await  dispatch(reviewActions.postReview(spot.id, newReview)).then(closeModal).catch((error) => {
+            setErrors({...errors, errors: "Review already exists for this spot"});
         })
         
         
     }
     
-   
+
     
     // const handleClick = () => {
     //     closeModal();
@@ -79,6 +93,9 @@ const PostReviewModal = () => {
             
         <div className="reviewform-container">
             <h1>How was your stay?</h1>
+            <p>
+                review must be more than 10 characters
+            </p>
                 <div className="error">
                 
                 {Object.values(errors).map((error, idx) => (

@@ -36,17 +36,14 @@
 
 .session-buttons {
     margin: 10px;
-    display: flex;
-
-    
-
+    display: flex; 
 }
 
 button {
     padding: 10px;
     background-color: #CCCCCC;
-    color: white;
-    font-family: cursive;
+    color: #080808;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     border-radius: 5px;
     border: black solid 3px;
@@ -71,16 +68,13 @@ button {
     display: flex;
     padding: 10px;
     flex-direction: column;
-    width: 100%;
-    max-width: 300px;
-    text-indent: 105px;
     margin-top: 10px;
     margin-bottom: 20px;
     box-shadow: 5px 5px 10px #333;
     border: black solid 3px;
     background-color: #CCCCCC;
     color: white;
-    font-family: cursive;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 14pt;
     cursor: pointer;
 }
@@ -104,7 +98,7 @@ button {
     display: flex;
     align-items: flex-start;
     margin-right: 40px;
-    font-family: cursive;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 18pt;
     font-weight: bold;
 }
@@ -121,7 +115,7 @@ button {
     margin-bottom: 10px;
     margin-left: 100px;
     margin-right: 100px;
-    font-family: cursive; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
     font-size: 14pt;
 }
 
@@ -133,7 +127,7 @@ button {
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
-    font-family: cursive;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 14pt;
 }
 
@@ -151,34 +145,33 @@ button {
     overflow: auto;
     align-items: center;
     border: 3px solid black;
+    border-radius: 4px;
     justify-content: center;
     margin-bottom: 10px;
     margin-left: 100px;
     margin-right: 100px;
-    font-family: cursive; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
     font-size: 14pt;
 }
 
 .login-button {
     display: flex;
-    padding: 10px;
+    padding: 5px;
     flex-direction: column;
-    width: 100%;
-    max-width: 300px;
-    text-indent: 120px;
     margin-top: 10px;
     margin-bottom: 20px;
     box-shadow: 5px 5px 10px #333;
     border: black solid 3px;
     background-color: #CCCCCC;
-    color: white;
-    font-family: cursive;
-    font-size: 14pt;
+    color: #080808;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12pt;
+    text-align: center;
     cursor: pointer;
 }
 
 .login-button:disbaled {
-    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .login-errors {
@@ -186,21 +179,21 @@ button {
     display: flex;
     align-items: flex-start;
     margin-right: 40px;
-    font-family: cursive;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 18pt;
     font-weight: bold;
 }
- 
+
 .login-errors-ul {
     display: flex;
     align-items: flex-start;
-    font-family: cursive;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .demo-user {
     display: flex;
     margin-bottom: 20px;
-    font-family: cursive;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 14pt;
 }
 
@@ -210,8 +203,8 @@ button {
     display: flex;
     margin-top: 20px;
     margin-bottom: 20px;
-    font-size: 14pt;
-    font-family: cursive;
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
 }
 
 .signup-h1 {
@@ -222,12 +215,10 @@ button {
     margin-bottom: 20px;
     font-size: 24pt;
     font-weight: bold;
-    font-family: cursive;
 }
 
 
 .outer-buttons {
-    font-family: cursive;
     display: flex;
     gap: 10px;
     padding: 5px;
@@ -236,6 +227,3 @@ button {
     font-style: none;
 }
 
-.inner-buttons {
-    font-family: cursive;
-}

@@ -24,12 +24,11 @@ const SpotReviews = () => {
         dispatch(spotActions.fetchSpotDetails(spotId));
     }, [dispatch, spotId]);
     
-
+    
     
 const renderPostReview = () => {
-        if ((user && user.id !== spot.Owner.id ) || reviews.length === 0) {
+        if ((user && user.id !== spot.Owner.id )) {
             return (
-        
                     <OpenModalButton 
                         buttonText="Post Your Review"
                         modalComponent={<PostReviewModal />}
@@ -57,7 +56,7 @@ const renderPostReview = () => {
         )
     }
 
-   
+
     
     
     return reviews.length && spot && (
@@ -80,8 +79,7 @@ const renderPostReview = () => {
             ))}
         </div>
     )
-  
-     
+
     
 
 }
