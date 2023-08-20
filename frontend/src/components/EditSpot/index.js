@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams, useHistory } from "react-router-dom";
 import * as spotsActions from "../../store/spots";
 import { useEffect } from "react";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 
 
@@ -146,7 +147,10 @@ const EditSpotForm = () => {
 
 
 
-            <button type="submit" className="spot-button">Update Spot</button>
+            <button type="submit" className="spot-button" style={{marginBottom: '10px'}}>Update Spot</button>
+            <button className="spot-button">
+                <NavLink to={`/spots/current`} style={{textDecoration: 'none', color: 'black'}}>Cancel</NavLink>
+            </button>
     </form>
     </div>
     ) : (

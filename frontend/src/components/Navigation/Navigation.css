@@ -1,11 +1,6 @@
-
-
-
 .hidden {
     display: none;
 }
-
-
 
 .nav-ul {
     display: flex;
@@ -218,12 +213,50 @@ button {
 }
 
 
-.outer-buttons {
-    display: flex;
-    gap: 10px;
-    padding: 5px;
-    align-items: center;
-    text-decoration: none;
-    font-style: none;
+.profile-button {
+    padding: 10px;
+    background-color: #ccc;
+    color: #080808;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    border-radius: 5px;
+    border: black solid 3px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px #333;
 }
+
+.profile-dropdown {
+    list-style: none;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 4px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 100px;
+    right: 8px;
+    width: 125px;
+    z-index: 1000;
+    flex-direction: column; /* Align items vertically */
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-dropdown li, .profile-dropdown a {
+    text-align: center;
+    margin-bottom: 8px;
+    margin-right: 8px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    color: #080808;
+}
+
+.profile-dropdown a:hover {
+    color: #f76f6d;
+}
+
+
+
+
+
 

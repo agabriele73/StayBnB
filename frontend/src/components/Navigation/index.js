@@ -45,7 +45,9 @@ function Navigation({isLoaded}) {
     return (
         <ul className='nav-ul'>
             <li className='nav-button'>
-                <NavLink exact to="/"><img className='home-image' src={homeIcon} alt="home"/></NavLink>
+                <NavLink exact to="/">
+                    <img className='home-image' src={homeIcon} alt="home"/>
+                </NavLink>
             </li>
             {isLoaded && sessionLinks}
         </ul>
