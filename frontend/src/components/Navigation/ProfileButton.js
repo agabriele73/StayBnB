@@ -45,31 +45,29 @@ const ProfileButton = ({user}) => {
 
     return (
         <>
-        <div className="outer-buttons">
-            <NavLink to='/spots/new' style={{ "textDecoration": "none"}}>
-                Create a New Spot
-            </NavLink>
             <button onClick={openMenu}>
                 <i className="fa-solid fa-user fa-sm"></i>
             </button>
-
-        </div>
-        <div className="inner-buttons">
-
-            <ul className={ulClassName} ref={ulRef} style={{ "listStyle": "none", "border": "solid 2px black", "wordSpacing": "5px", "paddingLeft": "1px", "boxShadow": "5px 5px 10px #333"}}>
-                <li style={{ "marginBottom": "10px"}}>Hello, {user.firstName}</li>
-                <br/>
-                <li style={{ "marginBottom": "10px", "borderBottom": "1px solid #000000", "width": "100%", "padding": "5px 0"}}>{user.email}</li>
-                < NavLink to={`/spots/current`} style={{ "textDecoration": "none"}}>
-                    <li style={{ "marginBottom": "10px", "borderBottom": "1px solid #000000", "width": "100%", "padding": "5px 0"}}>
-                      Manage Spots
+        { showMenu && (
+                <ul className={ulClassName} ref={ulRef}>
+                    <li>Hello, {user.firstName}</li>
+                    <li>{user.email}</li>
+                    <li>
+                        < NavLink to={`/spots/current`}>
+                                Manage Spots
+                        </NavLink>                
                     </li>
-                </NavLink>                
-                <li  style={{ "display": "flex", "justifyContent": "center", "marginBottom": "4px", "boxShadow": "none"}}>
-                    <button onClick={logout}>Logout</button>
-                </li>
-            </ul>
-        </div>
+                    <li>
+                        <NavLink to='/spots/new'>
+                            Create a New Spot
+                        </NavLink>
+                    </li>
+                    <li>
+                        <button onClick={logout}>Logout</button>
+                    </li>
+                </ul>
+            )
+        }
         </>
     )
 }
